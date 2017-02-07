@@ -23,24 +23,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </imageView>
-                            <view alpha="0.40000000000000002" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="79F-Um-X1Y">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="79F-Um-X1Y" firstAttribute="leading" secondItem="UgX-MN-MJe" secondAttribute="leading" id="0ha-xp-ZJx"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leading" id="A9W-l1-pDh"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="top" secondItem="79F-Um-X1Y" secondAttribute="top" id="AXW-1x-5bv"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="bottom" secondItem="5fG-RT-5ET" secondAttribute="top" id="Fe5-No-VL8"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="top" secondItem="Coh-qp-lei" secondAttribute="bottom" id="i16-M3-ZYk"/>
-                            <constraint firstItem="79F-Um-X1Y" firstAttribute="trailing" secondItem="UgX-MN-MJe" secondAttribute="trailing" id="kMI-hr-TzI"/>
-                            <constraint firstAttribute="trailing" secondItem="79F-Um-X1Y" secondAttribute="trailing" id="s3I-LS-Z1k"/>
-                            <constraint firstItem="79F-Um-X1Y" firstAttribute="bottom" secondItem="5fG-RT-5ET" secondAttribute="top" id="zgy-1f-YKW"/>
+                            <constraint firstAttribute="trailing" secondItem="UgX-MN-MJe" secondAttribute="trailing" id="ef7-ee-ayj"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leading" id="iam-WC-qNN"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="top" secondItem="M0j-Uh-pvS" secondAttribute="top" id="tYy-YA-RlM"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="bottom" secondItem="5fG-RT-5ET" secondAttribute="top" id="u2v-MJ-QKL"/>
                         </constraints>
                     </view>
                     <connections>
