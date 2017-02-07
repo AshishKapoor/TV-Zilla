@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
+// TMDb ApiKey-v3
 let apikey      = "2de045dee84cbaea635494518315f957"
 
-func getImageURL(movieId: Int) -> URL {
-    let url : NSString = "https://api.themoviedb.org/3/movie/\(movieId)/images?api_key=\(apikey)&language=en-US" as NSString
-    let urlStr : NSString = url.addingPercentEscapes(using: String.Encoding.utf8.rawValue)! as NSString
-    let imageURL : NSURL = NSURL(string: urlStr as String)!
-    return imageURL as URL
-}
+// List of movies type
+let kTopRatedMovies     = "Top Rated Movies"
+let kNowPlayingMovies   = "Now Playing"
+let kUpcomingMovies     = "Upcoming Movies"
+let kPopularMovies      = "Popular Movies"
 
 enum typeOfMovies: String {
     case upcoming
@@ -25,10 +25,10 @@ enum typeOfMovies: String {
     case popular
 }
 
+// Table and defaults
+let kLoadingStateText   = "Loading..."
 let kTableViewBackgroundColor   = UIColor.init(white: 0.969, alpha: 1.000)
-
-let kLoadingStateText           = "Loading..."
-let kDefaultMovieImage          = UIImage(named: "movie-poster-not-found")
+let kDefaultMovieImage  = UIImage(named: "movie-poster-not-found")
 
 enum LoadingStatus {
     case StatusLoading

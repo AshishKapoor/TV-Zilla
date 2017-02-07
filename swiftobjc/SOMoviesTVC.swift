@@ -15,17 +15,20 @@ class SOMoviesTVC: UITableViewController {
     var movies = [Movies]()
     var status:LoadingStatus? = nil
 
-    @IBOutlet weak var typeButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "SwiftObjc"
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
         // Refresh control
-        self.refreshControl?.addTarget(self, action: #selector(SOMoviesTVC.refreshMoviesList), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self,
+                                       action: #selector(SOMoviesTVC.refreshMoviesList),
+                                       for: UIControlEvents.valueChanged
+        )
+        self.refreshControl?.tintColor = UIColor.black
 
         loadMovies()
-        self.tableView.backgroundColor = kTableViewBackgroundColor
+        setupTableView()
     }
     
     func loadMovies() {
@@ -33,60 +36,18 @@ class SOMoviesTVC: UITableViewController {
     }
     
     func refreshMoviesList() {
-        print("refreshing...")
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+    }
+    
+    func setupTableView() {
+        self.tableView.backgroundColor = kTableViewBackgroundColor
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func typeButtonPressed(_ sender: Any) {
         showAlertSheet()
@@ -94,29 +55,37 @@ class SOMoviesTVC: UITableViewController {
     
     func showAlertSheet () -> Void {
         // Create the AlertController and add its actions like button in ActionSheet
-        let actionSheetController = UIAlertController(title: "Please select movie lists type", message: "", preferredStyle: .actionSheet)
+        let actionSheetController = UIAlertController(
+            title: nil, message: nil,
+            preferredStyle: .actionSheet
+        )
         
-        let nowPlayingButton = UIAlertAction(title: "Now Playing", style: .default) { action -> Void in
+        let nowPlayingButton = UIAlertAction(title: "Now Playing",
+                                             style: .default) { action -> Void in
             self.setType(type: .nowPlaying)
         }
         actionSheetController.addAction(nowPlayingButton)
         
-        let upcomingButton = UIAlertAction(title: "Upcoming", style: .default) { action -> Void in
+        let upcomingButton = UIAlertAction(title: "Upcoming",
+                                           style: .default) { action -> Void in
             self.setType(type: .upcoming)
         }
         actionSheetController.addAction(upcomingButton)
         
-        let topRatedButton = UIAlertAction(title: "Top Rated", style: .default) { action -> Void in
+        let topRatedButton = UIAlertAction(title: "Top Rated",
+                                           style: .default) { action -> Void in
             self.setType(type: .topRated)
         }
         actionSheetController.addAction(topRatedButton)
         
-        let popularButton = UIAlertAction(title: "Popular", style: .default) { action -> Void in
+        let popularButton = UIAlertAction(title: "Popular",
+                                          style: .default) { action -> Void in
             self.setType(type: .popular)
         }
         actionSheetController.addAction(popularButton)
         
-        let cancleActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        let cancleActionButton = UIAlertAction(title: "Cancel",
+                                               style: .cancel) { action -> Void in
             print("Do nothing")
         }
         actionSheetController.addAction(cancleActionButton)
@@ -132,42 +101,30 @@ class SOMoviesTVC: UITableViewController {
         case .topRated:
             MovieMDB.toprated(apikey, language: "en", page: 1) {
                 data, topRatedMovies in
-                if let movie = topRatedMovies{
-                    self.title = "Top Rated Movies"
-                    self.movies.append(Movies(id: movie[0].id!, posterPath: movie[0].poster_path!,
-                                              title: movie[0].title!, overview: movie[0].overview!,
-                                              release_date: movie[0].release_date!)
-                    )
-                    self.tableView.reloadData()
-                    self.status = LoadingStatus.StatusLoaded
+                if let movie = topRatedMovies {
+                    self.title = kTopRatedMovies
+                    self.getMovies(movieData: movie)
+                    self.reloadTable()
                 }
             }
             break
         case .nowPlaying:
-            MovieMDB.nowplaying(apikey, language: "en", page: 2) {
+            MovieMDB.nowplaying(apikey, language: "en", page: 1) {
                 data, nowPlaying in
-                if let movie = nowPlaying{
-                    self.title = "Now Playing"
-                    self.movies.append(Movies(id: movie[0].id!, posterPath: movie[0].poster_path!,
-                                              title: movie[0].title!, overview: movie[0].overview!,
-                                              release_date: movie[0].release_date!)
-                    )
-                    self.tableView.reloadData()
-                    self.status = LoadingStatus.StatusLoaded
+                if let movie = nowPlaying {
+                    self.title = kNowPlayingMovies
+                    self.getMovies(movieData: movie)
+                    self.reloadTable()
                 }
             }
             break
         case .upcoming:
             MovieMDB.upcoming(apikey, page: 1, language: "en") {
                 data, upcomingMovies in
-                if let movie = upcomingMovies{
-                    self.title = "Upcoming Movies"
-                    self.movies.append(Movies(id: movie[0].id!, posterPath: movie[0].poster_path!,
-                                              title: movie[0].title!, overview: movie[0].overview!,
-                                              release_date: movie[0].release_date!)
-                    )
-                    self.tableView.reloadData()
-                    self.status = LoadingStatus.StatusLoaded
+                if let movie = upcomingMovies {
+                    self.title = kUpcomingMovies
+                    self.getMovies(movieData: movie)
+                    self.reloadTable()
                 }
             }
             break
@@ -175,28 +132,46 @@ class SOMoviesTVC: UITableViewController {
             MovieMDB.popular(apikey, language: "en", page: 1) {
                 data, popularMovies in
                 if let movie = popularMovies {
-                    self.title = "Popular Movies"
-                    self.movies.append(Movies(id: movie[0].id!, posterPath: movie[0].poster_path!,
-                                              title: movie[0].title!, overview: movie[0].overview!,
-                                              release_date: movie[0].release_date!)
-                    )
-                    self.tableView.reloadData()
-                    self.status = LoadingStatus.StatusLoaded
+                    self.title = kPopularMovies
+                    self.getMovies(movieData: movie)
+                    self.reloadTable()
                 }
             }
             break
         }
     }
+    
+    func getMovies(movieData: [MovieMDB]) {
+        self.movies.append(Movies(id: movieData[0].id!, posterPath: movieData[0].poster_path!,
+                                  title: movieData[0].title!, overview: movieData[0].overview!,
+                                  release_date: movieData[0].release_date!)
+        )
+    }
 
+    func reloadTable() {
+        self.tableView.reloadData()
+        self.status = LoadingStatus.StatusLoaded
+    }
+    
     @IBAction func filterButtonPressed(_ sender: Any) {
         print("filter button pressed")
     }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
 
 
 extension SOMoviesTVC {
-    // MARK: - Table view data source
     
+    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -208,7 +183,8 @@ extension SOMoviesTVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
         let cellIdentifier = "soMoviesTVCID"
-        guard let cell = tableView.dequeueReusableCell (withIdentifier: cellIdentifier, for: indexPath) as? SOMoviesTVCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell (
+            withIdentifier: cellIdentifier, for: indexPath) as? SOMoviesTVCell else { return UITableViewCell() }
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         if self.status == LoadingStatus.StatusLoading {
