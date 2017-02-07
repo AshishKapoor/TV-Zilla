@@ -6,6 +6,6 @@ target 'swiftobjc' do
   use_frameworks!
 
   # Pods for swiftobjc
-  pod "TMDBSwift"
-
+  pod 'TMDBSwift'
+  pod 'Kingfisher', '~> 3.0'
 end

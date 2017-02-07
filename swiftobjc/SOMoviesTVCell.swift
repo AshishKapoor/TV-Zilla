@@ -10,19 +10,26 @@ import UIKit
 
 class SOMoviesTVCell: UITableViewCell {
 
-    @IBOutlet weak var moviesImageView: UIImageView!
-    @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var moviePlotTextField: UITextView!
-    @IBOutlet weak var movieYearLabel: UILabel!
+    @IBOutlet weak var moviesImageView:         UIImageView!
+    @IBOutlet weak var movieNameLabel:          UILabel!
+    @IBOutlet weak var moviePlotLabel:          UILabel!
+    @IBOutlet weak var movieYearLabel:          UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        roundedCornersForStudentPhoto()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
+    func roundedCornersForStudentPhoto () -> Void {
+        // Changing image view corners
+        moviesImageView.layer.cornerRadius = 8.0
+        moviesImageView.clipsToBounds = true
+    }
+    
 }
