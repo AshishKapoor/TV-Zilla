@@ -143,11 +143,17 @@ class SOMoviesTVC: UITableViewController {
         }
     }
     
-    func getMovies(movieData: [MovieMDB]) {
-        self.movies.append(Movies(id: movieData[0].id!, posterPath: movieData[0].poster_path!,
-                                  title: movieData[0].title!, overview: movieData[0].overview!,
-                                  release_date: movieData[0].release_date!)
-        )
+    func getMovies(movieData: [MovieMDB] ) {
+        for movieIterator in movieData {
+            self.movies.append(Movies(
+                    id: movieIterator.id!,
+                    posterPath: movieIterator.poster_path!,
+                    title: movieIterator.title!,
+                    overview: movieIterator.overview!,
+                    release_date: movieIterator.release_date!
+                )
+            )
+        }
     }
 
     func reloadTable() {
