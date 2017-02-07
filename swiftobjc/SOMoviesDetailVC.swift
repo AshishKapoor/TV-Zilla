@@ -10,10 +10,15 @@ import UIKit
 
 class SOMoviesDetailVC: UIViewController {
 
+    @IBOutlet var backgroundImageView: UIImageView!
+    var posterUrl: String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//        backgroundImageView.image = kDefaultMovieImage
+        
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterUrl)")
+        backgroundImageView.kf.setImage(with: url)
     }
 
     override func didReceiveMemoryWarning() {

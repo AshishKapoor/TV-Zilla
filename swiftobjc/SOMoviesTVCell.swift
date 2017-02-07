@@ -18,6 +18,10 @@ class SOMoviesTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.movieNameLabel?.text        = kLoadingStateText
+        self.movieYearLabel?.text        = kLoadingStateText
+        self.moviePlotLabel?.text        = kLoadingStateText
+        self.moviesImageView?.image      = kDefaultMovieImage
         roundedCornersForStudentPhoto()
     }
 

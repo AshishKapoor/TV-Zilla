@@ -35,3 +35,5 @@ enum LoadingStatus {
     case StatusLoaded
     case StatusLoadingFailed
 }
+
+let soStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

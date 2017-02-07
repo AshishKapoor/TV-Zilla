@@ -42,6 +42,8 @@ class SOMoviesTVC: UITableViewController {
     
     func setupTableView() {
         self.tableView.backgroundColor = kTableViewBackgroundColor
+        // to remove the unwanted cells from footer.
+        self.tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -156,16 +158,7 @@ class SOMoviesTVC: UITableViewController {
     @IBAction func filterButtonPressed(_ sender: Any) {
         print("filter button pressed")
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+ 
 }
 
 
@@ -200,5 +193,13 @@ extension SOMoviesTVC {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView.cellForRow(at: indexPath) as? SOMoviesTVCell) != nil {
+            let soMoviesDetailVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC
+            soMoviesDetailVC?.posterUrl = self.movies[indexPath.row].posterPath
+            self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
+        }
     }
 }
