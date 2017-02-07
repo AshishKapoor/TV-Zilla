@@ -384,6 +384,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F1F65C011D9CF35B1E53406 /* Pods-swiftobjc.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2EPQPD443P;
 				INFOPLIST_FILE = swiftobjc/Info.plist;
@@ -398,6 +399,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62E5BA915AC22ED77E0FB39A /* Pods-swiftobjc.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2EPQPD443P;
 				INFOPLIST_FILE = swiftobjc/Info.plist;
