@@ -24,16 +24,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="67" y="178" width="240" height="311"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="UgX-MN-MJe" secondAttribute="trailing" id="ef7-ee-ayj"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leading" id="iam-WC-qNN"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="top" secondItem="M0j-Uh-pvS" secondAttribute="top" id="tYy-YA-RlM"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="bottom" secondItem="5fG-RT-5ET" secondAttribute="top" id="u2v-MJ-QKL"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="top" secondItem="Coh-qp-lei" secondAttribute="bottom" constant="158" id="2Ce-uP-5kv"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leadingMargin" constant="51" id="Els-ok-ScO"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="centerX" secondItem="M0j-Uh-pvS" secondAttribute="centerX" id="h7I-Gw-JcL"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="centerY" secondItem="M0j-Uh-pvS" secondAttribute="centerY" id="ie1-xS-PwV"/>
                         </constraints>
                     </view>
                     <connections>
