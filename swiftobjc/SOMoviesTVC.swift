@@ -42,6 +42,7 @@ class SOMoviesTVC: UITableViewController {
     }
     
     func refreshMoviesList() {
+        self.refreshControl?.beginRefreshing()
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
