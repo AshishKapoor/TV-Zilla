@@ -18,8 +18,6 @@ class SOMoviesTVC: UITableViewController {
     var fromReleaseYear        = "2016-01-04"
     var tillReleaseYear        = "2016-01-08"
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "SwiftObjc"
@@ -193,12 +191,32 @@ class SOMoviesTVC: UITableViewController {
     }
     
     @IBAction func filterButtonPressed(_ sender: Any) {
-        getReleaseDates ()
-    }
-    
-    func getReleaseDates() {
-        //call some function to ask for release dates values from users with validation of time.
-        callFilteredMovies(till: tillReleaseYear, from: fromReleaseYear)
+        
+        let soFilterVC = soStoryBoard.instantiateViewController(withIdentifier: "SOFilterVC") as? SOFilterVC
+        self.navigationController?.pushViewController(soFilterVC!, animated: true)
+        
+//        let alert = UIAlertController(title: "Release Year", message: "Filter with release dates", preferredStyle: UIAlertControllerStyle.alert)
+//        
+//        alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.default, handler:  { (action) -> Void in
+//            self.callFilteredMovies(till: self.tillReleaseYear, from: self.fromReleaseYear)
+//        }))
+//        
+//        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.default, handler: nil))
+//        alert.addTextField(configurationHandler: {(textField: UITextField!) in
+//            textField.tintColor     = UIColor.black
+//            textField.placeholder   = "From: 2016-01-04"
+//            textField.keyboardType  = UIKeyboardType.alphabet
+//            textField.addTarget(self, action: #selector(self.showDatePicker), for: .editingDidBegin)
+//            self.fromReleaseYear    = textField.text!
+//        })
+//        alert.addTextField(configurationHandler: {(textField: UITextField!) in
+//            textField.tintColor     = UIColor.black
+//            textField.placeholder   = "Till: 2016-01-08"
+//            textField.keyboardType  = UIKeyboardType.alphabet
+//            self.tillReleaseYear    = textField.text!
+//        })
+//        
+//        self.present(alert, animated: true, completion: nil)
     }
     
     func callFilteredMovies(till: String, from: String) {

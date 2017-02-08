@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1BD91F1E4AF4E300CFA756 /* SCPopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BD91E1E4AF4E300CFA756 /* SCPopDatePicker.swift */; };
+		2D1BD9211E4AF7BC00CFA756 /* SOFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BD9201E4AF7BC00CFA756 /* SOFilterVC.swift */; };
+		2D1BD9231E4B003100CFA756 /* SOMainNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BD9221E4B003100CFA756 /* SOMainNC.swift */; };
 		2D4B88F11E4A07EA00E25CE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B88F01E4A07EA00E25CE3 /* AppDelegate.swift */; };
 		2D4B88F61E4A07EA00E25CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */; };
 		2D4B88F81E4A07EA00E25CE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D4B88F71E4A07EA00E25CE3 /* Assets.xcassets */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		0F1F65C011D9CF35B1E53406 /* Pods-swiftobjc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftobjc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swiftobjc/Pods-swiftobjc.debug.xcconfig"; sourceTree = "<group>"; };
 		1E96A6BB9344C117E112548C /* Pods_swiftobjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftobjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1BD91E1E4AF4E300CFA756 /* SCPopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPopDatePicker.swift; sourceTree = "<group>"; };
+		2D1BD9201E4AF7BC00CFA756 /* SOFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOFilterVC.swift; sourceTree = "<group>"; };
+		2D1BD9221E4B003100CFA756 /* SOMainNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMainNC.swift; sourceTree = "<group>"; };
 		2D4B88ED1E4A07EA00E25CE3 /* swiftobjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swiftobjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D4B88F01E4A07EA00E25CE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D4B88F51E4A07EA00E25CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 			children = (
 				2D4B88FC1E4A07EA00E25CE3 /* Info.plist */,
 				2D4B88F91E4A07EA00E25CE3 /* LaunchScreen.storyboard */,
+				2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */,
 				2D4B88F01E4A07EA00E25CE3 /* AppDelegate.swift */,
 				2D4B89071E4A084700E25CE3 /* Helpers */,
 				2D4B89061E4A083E00E25CE3 /* Controllers */,
@@ -100,7 +107,6 @@
 		2D4B89051E4A083600E25CE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */,
 				2D4B89121E4A0D8100E25CE3 /* SOMoviesTVCell.swift */,
 			);
 			name = Views;
@@ -111,6 +117,8 @@
 			children = (
 				2D4B89101E4A0D6C00E25CE3 /* SOMoviesTVC.swift */,
 				2D4B890A1E4A0BFF00E25CE3 /* SOMoviesDetailVC.swift */,
+				2D1BD9201E4AF7BC00CFA756 /* SOFilterVC.swift */,
+				2D1BD9221E4B003100CFA756 /* SOMainNC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -119,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4B89021E4A082700E25CE3 /* SOConstants.swift */,
+				2D1BD91E1E4AF4E300CFA756 /* SCPopDatePicker.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -256,10 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D1BD9211E4AF7BC00CFA756 /* SOFilterVC.swift in Sources */,
 				2D4B89031E4A082700E25CE3 /* SOConstants.swift in Sources */,
+				2D1BD91F1E4AF4E300CFA756 /* SCPopDatePicker.swift in Sources */,
 				2D4B89111E4A0D6C00E25CE3 /* SOMoviesTVC.swift in Sources */,
 				2D4B89091E4A08AE00E25CE3 /* Movies.swift in Sources */,
 				2D4B89131E4A0D8100E25CE3 /* SOMoviesTVCell.swift in Sources */,
+				2D1BD9231E4B003100CFA756 /* SOMainNC.swift in Sources */,
 				2D4B88F11E4A07EA00E25CE3 /* AppDelegate.swift in Sources */,
 				2D4B890B1E4A0BFF00E25CE3 /* SOMoviesDetailVC.swift in Sources */,
 			);
