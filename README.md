@@ -11,7 +11,7 @@ An app that utilizes TMDb API for displaying list of movies with details having 
 <img src="./swiftobjc/screenshots/detailview.png" alt="Drawing" style="width: 80px;"/>
 
 ##Movies List View
-<img src="./swiftobjc/screenshots/movielist.png" alt="Drawing" style="width: 80px;"/>
+<img src="./swiftobjc/screenshots/movielists.png" alt="Drawing" style="width: 80px;"/>
 
 ##Filter with Release Date
 <img src="./swiftobjc/screenshots/releasedate.png" alt="Drawing" style="width: 80px;"/>
