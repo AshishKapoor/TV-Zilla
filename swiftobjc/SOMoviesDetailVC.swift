@@ -11,14 +11,31 @@ import UIKit
 class SOMoviesDetailVC: UIViewController {
 
     @IBOutlet var backgroundImageView: UIImageView!
-    var posterUrl: String = String()
+    var moviePosterURL: String   = String()
+    var movieReleaseDate: String = String()
+    var movieTitle: String       = String()
+    var movieOverview: String    = String()
+    var movieID: Int             = Int()
+    
+    
+    @IBOutlet weak var movieIDLabel: UILabel!
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var movieOverviewLabel: UILabel!
+    @IBOutlet weak var movieReleaseYearLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        backgroundImageView.image = kDefaultMovieImage
         
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterUrl)")
+        loadReceivedValues()
+    }
+    
+    func loadReceivedValues() {
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(moviePosterURL)")
         backgroundImageView.kf.setImage(with: url)
+        movieIDLabel.text           = String(movieID)
+        movieTitleLabel.text        = movieTitle
+        movieOverviewLabel.text     = movieOverview
+        movieReleaseYearLabel.text  = movieReleaseDate
     }
 
     override func didReceiveMemoryWarning() {

@@ -270,7 +270,11 @@ extension SOMoviesTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.cellForRow(at: indexPath) as? SOMoviesTVCell) != nil {
             let soMoviesDetailVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC
-            soMoviesDetailVC?.posterUrl = self.movies[indexPath.row].posterPath
+            soMoviesDetailVC?.moviePosterURL        = self.movies[indexPath.row].posterPath
+            soMoviesDetailVC?.movieID               = self.movies[indexPath.row].id
+            soMoviesDetailVC?.movieOverview         = self.movies[indexPath.row].overview
+            soMoviesDetailVC?.movieTitle            = self.movies[indexPath.row].title
+            soMoviesDetailVC?.movieReleaseDate      = self.movies[indexPath.row].releaseDate
             self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
         }
     }
