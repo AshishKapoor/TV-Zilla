@@ -25,33 +25,15 @@ class SOMoviesDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadReceivedValues()
     }
     
     func loadReceivedValues() {
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(moviePosterURL)")
-        backgroundImageView.kf.setImage(with: url)
+        backgroundImageView.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL))
         movieIDLabel.text           = String(movieID)
         movieTitleLabel.text        = movieTitle
         movieOverviewLabel.text     = movieOverview
         movieReleaseYearLabel.text  = movieReleaseDate
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -38,3 +38,7 @@ enum LoadingStatus {
 }
 
 let soStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+func getTMDBUrl (posterPath: String) -> URL {
+    return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")!
+}

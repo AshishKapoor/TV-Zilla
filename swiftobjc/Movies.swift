@@ -24,10 +24,6 @@ class Movies {
         self._poster_path           = posterPath        ?? ""
     }
     
-    func getMoviesInfo() {
-        print("\(title) \(posterPath) \(overview) \(releaseDate)")
-    }
-    
     var id: Int {
         return _id
     }
@@ -49,8 +45,7 @@ class Movies {
     }
 
     func getPosterURL() -> URL {
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-        return url!
+        return getTMDBUrl(posterPath: posterPath)
     }
     
 }

@@ -24,9 +24,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
                                 <rect key="frame" x="70" y="28" width="230" height="321"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-sQ-WaC">
                                 <rect key="frame" x="17" y="395" width="35" height="18"/>
@@ -237,13 +236,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="TMDb Movies" id="9C5-FL-AcB">
                         <barButtonItem key="backBarButtonItem" title="Movies" id="soG-v5-KpM"/>
-                        <barButtonItem key="leftBarButtonItem" title="List" id="Arw-7s-HTA">
+                        <barButtonItem key="leftBarButtonItem" image="list-bar-view-icon" id="Arw-7s-HTA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="typeButtonPressed:" destination="cuy-St-Uts" id="PxV-H6-JmC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="STL-ml-FCJ">
+                        <barButtonItem key="rightBarButtonItem" image="filter-bar-view-icon" id="STL-ml-FCJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="filterButtonPressed:" destination="cuy-St-Uts" id="6K9-rL-mdx"/>
@@ -260,4 +259,8 @@
             <point key="canvasLocation" x="893.60000000000002" y="-646.32683658170924"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="filter-bar-view-icon" width="20" height="20"/>
+        <image name="list-bar-view-icon" width="20" height="20"/>
+    </resources>
 </document>
