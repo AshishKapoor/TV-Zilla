@@ -82,7 +82,7 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     }
     
     func showDatePicker() {
-        self.datePicker.tapToDismiss = true
+        self.datePicker.tapToDismiss = false
         self.datePicker.datePickerType = SCDatePickerType.date
         self.datePicker.showBlur = true
         self.datePicker.datePickerStartDate = self.date
