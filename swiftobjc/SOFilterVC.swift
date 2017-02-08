@@ -10,6 +10,7 @@ import UIKit
 
 class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     
+    // Outlets and properties
     let datePicker = SCPopDatePicker()
     let date = Date()
     
@@ -18,9 +19,10 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
  
+    // Delegate function for the Picker protocol
     func scPopDatePickerDidSelectDate(_ date: Date) {
         if fromReleaseDateTF.isEditing {
             self.fromReleaseDateTF.endEditing(true)
@@ -42,7 +44,6 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {
-        
         if (checkEmptyFields()) {
             if (checkDateValidation()) {
                 let soMoviesTVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesTVC") as? SOMoviesTVC
@@ -91,6 +92,8 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
         self.datePicker.delegate = self
         self.datePicker.show(attachToView: self.view)
     }
+    
+    // Textfield actions
     
     @IBAction func beginEditingFromTF(_ sender: Any) {
         showDatePicker()

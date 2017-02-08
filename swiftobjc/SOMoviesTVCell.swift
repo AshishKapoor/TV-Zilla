@@ -10,6 +10,7 @@ import UIKit
 
 class SOMoviesTVCell: UITableViewCell {
 
+    // Outlets
     @IBOutlet weak var moviesImageView:         UIImageView!
     @IBOutlet weak var movieNameLabel:          UILabel!
     @IBOutlet weak var moviePlotLabel:          UILabel!
@@ -25,11 +26,7 @@ class SOMoviesTVCell: UITableViewCell {
         roundedCornersForStudentPhoto()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-
+    // UI update with images having rounded corners
     func roundedCornersForStudentPhoto () -> Void {
         // Changing image view corners
         moviesImageView.layer.cornerRadius = 8.0

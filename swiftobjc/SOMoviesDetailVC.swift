@@ -9,14 +9,14 @@
 import UIKit
 
 class SOMoviesDetailVC: UIViewController {
-
+    
+    // Outlets and properties
     @IBOutlet var backgroundImageView: UIImageView!
     var moviePosterURL: String   = String()
     var movieReleaseDate: String = String()
     var movieTitle: String       = String()
     var movieOverview: String    = String()
     var movieID: Int             = Int()
-    
     
     @IBOutlet weak var movieIDLabel: UILabel!
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -26,6 +26,7 @@ class SOMoviesDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // This function loads all the received values from the abstract list view.
         loadReceivedValues()
     }
     

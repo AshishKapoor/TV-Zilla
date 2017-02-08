@@ -10,6 +10,7 @@ import Foundation
 
 class Movies {
     
+    // Properties
     private var _id                 = Int()
     private var _title              = String()
     private var _release_date       = String()
@@ -24,6 +25,7 @@ class Movies {
         self._poster_path           = posterPath        ?? ""
     }
     
+    // Getters
     var id: Int {
         return _id
     }

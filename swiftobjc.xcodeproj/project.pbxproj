@@ -62,6 +62,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2D1BD9241E4B182F00CFA756 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				2D4B89061E4A083E00E25CE3 /* Controllers */,
+				2D4B89051E4A083600E25CE3 /* Views */,
+				2D4B89041E4A082F00E25CE3 /* Models */,
+			);
+			name = Movie;
+			sourceTree = "<group>";
+		};
 		2D4B88E41E4A07E900E25CE3 = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +98,7 @@
 				2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */,
 				2D4B88F01E4A07EA00E25CE3 /* AppDelegate.swift */,
 				2D4B89071E4A084700E25CE3 /* Helpers */,
-				2D4B89061E4A083E00E25CE3 /* Controllers */,
-				2D4B89051E4A083600E25CE3 /* Views */,
-				2D4B89041E4A082F00E25CE3 /* Models */,
+				2D1BD9241E4B182F00CFA756 /* Movie */,
 				2D4B88F71E4A07EA00E25CE3 /* Assets.xcassets */,
 			);
 			path = swiftobjc;
