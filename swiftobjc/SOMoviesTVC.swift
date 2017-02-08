@@ -15,8 +15,8 @@ class SOMoviesTVC: UITableViewController {
     var movies                  = [Movies]()
     var status: LoadingStatus?  = nil
     var pageNumber: Int         = Int()
-    var fromReleaseYear        = "2016-01-04"
-    var tillReleaseYear        = "2016-01-08"
+    var fromReleaseYear         = String()
+    var tillReleaseYear         = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,32 +191,8 @@ class SOMoviesTVC: UITableViewController {
     }
     
     @IBAction func filterButtonPressed(_ sender: Any) {
-        
         let soFilterVC = soStoryBoard.instantiateViewController(withIdentifier: "SOFilterVC") as? SOFilterVC
         self.navigationController?.pushViewController(soFilterVC!, animated: true)
-        
-//        let alert = UIAlertController(title: "Release Year", message: "Filter with release dates", preferredStyle: UIAlertControllerStyle.alert)
-//        
-//        alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.default, handler:  { (action) -> Void in
-//            self.callFilteredMovies(till: self.tillReleaseYear, from: self.fromReleaseYear)
-//        }))
-//        
-//        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.default, handler: nil))
-//        alert.addTextField(configurationHandler: {(textField: UITextField!) in
-//            textField.tintColor     = UIColor.black
-//            textField.placeholder   = "From: 2016-01-04"
-//            textField.keyboardType  = UIKeyboardType.alphabet
-//            textField.addTarget(self, action: #selector(self.showDatePicker), for: .editingDidBegin)
-//            self.fromReleaseYear    = textField.text!
-//        })
-//        alert.addTextField(configurationHandler: {(textField: UITextField!) in
-//            textField.tintColor     = UIColor.black
-//            textField.placeholder   = "Till: 2016-01-08"
-//            textField.keyboardType  = UIKeyboardType.alphabet
-//            self.tillReleaseYear    = textField.text!
-//        })
-//        
-//        self.present(alert, animated: true, completion: nil)
     }
     
     func callFilteredMovies(till: String, from: String) {
@@ -278,7 +254,9 @@ extension SOMoviesTVC {
         } else if self.status == LoadingStatus.StatusLoaded {
             cell.movieNameLabel?.text        = self.movies[indexPath.row].title
             cell.movieYearLabel?.text        = self.movies[indexPath.row].releaseDate
-            cell.moviesImageView.kf.setImage(with: self.movies[indexPath.row].getPosterURL())
+            cell.moviesImageView.kf.setImage(with: self.movies[indexPath.row].getPosterURL(),
+                                             placeholder: UIImage(named: "movie-poster-not-found"),
+                                             options: nil, progressBlock: nil, completionHandler: nil)
             cell.moviePlotLabel.text = self.movies[indexPath.row].overview
         }
         

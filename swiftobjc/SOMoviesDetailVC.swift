@@ -30,12 +30,16 @@ class SOMoviesDetailVC: UIViewController {
     }
     
     func loadReceivedValues() {
-        backgroundImageView.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL))
+        backgroundImageView.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL),
+                                        placeholder: UIImage(named: "movie-poster-not-found"),
+                                        options: nil, progressBlock: nil, completionHandler: nil)
         movieIDLabel.text           = String(movieID)
         movieTitleLabel.text        = movieTitle
         movieOverviewLabel.text     = movieOverview
         movieReleaseYearLabel.text  = movieReleaseDate
-        backgroundImage.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL))
+        backgroundImage.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL),
+                                    placeholder: UIImage(named: ""),
+                                         options: nil, progressBlock: nil, completionHandler: nil)
     }
 
 }
