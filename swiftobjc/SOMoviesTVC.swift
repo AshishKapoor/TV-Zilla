@@ -12,23 +12,31 @@ import Kingfisher
 
 class SOMoviesTVC: UITableViewController {
     
-    var movies = [Movies]()
-    var status:LoadingStatus? = nil
-
+    var movies                  = [Movies]()
+    var status: LoadingStatus?  = nil
+    var pageNumber: Int         = Int()
+    var fromReleaseYear        = "2016-01-04"
+    var tillReleaseYear        = "2016-01-08"
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "SwiftObjc"
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
+        pageNumber = 1
+
+        setupRefreshControl()
+        loadMovies()
+        setupTableView()
+    }
+    
+    func setupRefreshControl() {
         // Refresh control
         self.refreshControl?.addTarget(self,
                                        action: #selector(SOMoviesTVC.refreshMoviesList),
                                        for: UIControlEvents.valueChanged
         )
         self.refreshControl?.tintColor = UIColor.black
-
-        loadMovies()
-        setupTableView()
     }
     
     func loadMovies() {
@@ -41,6 +49,8 @@ class SOMoviesTVC: UITableViewController {
     }
     
     func setupTableView() {
+        // Uncomment the following line to preserve selection between presentations
+        self.clearsSelectionOnViewWillAppear = false
         self.tableView.backgroundColor = kTableViewBackgroundColor
         // to remove the unwanted cells from footer.
         self.tableView.tableFooterView = UIView()
@@ -53,6 +63,12 @@ class SOMoviesTVC: UITableViewController {
     
     @IBAction func typeButtonPressed(_ sender: Any) {
         showAlertSheet()
+    }
+    
+    func clearOldList() {
+        if self.movies.count > 0 {
+            self.movies.removeAll()
+        }
     }
     
     func showAlertSheet () -> Void {
@@ -96,12 +112,12 @@ class SOMoviesTVC: UITableViewController {
     }
     
     func setType(type: typeOfMovies) -> Void {
-        if self.movies.count > 0 {
-            self.movies.removeAll()
-        }
+        
+        self.clearOldList()
+        
         switch type {
         case .topRated:
-            MovieMDB.toprated(apikey, language: "en", page: 1) {
+            MovieMDB.toprated(apikey, language: "en", page: self.pageNumber) {
                 data, topRatedMovies in
                 if let movie = topRatedMovies {
                     self.title = kTopRatedMovies
@@ -111,7 +127,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .nowPlaying:
-            MovieMDB.nowplaying(apikey, language: "en", page: 1) {
+            MovieMDB.nowplaying(apikey, language: "en", page: self.pageNumber) {
                 data, nowPlaying in
                 if let movie = nowPlaying {
                     self.title = kNowPlayingMovies
@@ -121,7 +137,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .upcoming:
-            MovieMDB.upcoming(apikey, page: 1, language: "en") {
+            MovieMDB.upcoming(apikey, page: self.pageNumber, language: "en") {
                 data, upcomingMovies in
                 if let movie = upcomingMovies {
                     self.title = kUpcomingMovies
@@ -131,7 +147,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .popular:
-            MovieMDB.popular(apikey, language: "en", page: 1) {
+            MovieMDB.popular(apikey, language: "en", page: self.pageNumber) {
                 data, popularMovies in
                 if let movie = popularMovies {
                     self.title = kPopularMovies
@@ -146,11 +162,26 @@ class SOMoviesTVC: UITableViewController {
     func getMovies(movieData: [MovieMDB] ) {
         for movieIterator in movieData {
             self.movies.append(Movies(
-                    id: movieIterator.id!,
-                    posterPath: movieIterator.poster_path!,
-                    title: movieIterator.title!,
-                    overview: movieIterator.overview!,
-                    release_date: movieIterator.release_date!
+                    id: movieIterator.id ?? 0,
+                    posterPath: movieIterator.poster_path ?? "",
+                    title: movieIterator.title ?? "",
+                    overview: movieIterator.overview ?? "",
+                    release_date: movieIterator.release_date ?? ""
+                )
+            )
+        }
+    }
+    
+    func getFilteredMovies(movieData: [MovieMDB]) {
+        self.clearOldList()
+
+        for movieIterator in movieData {
+            self.movies.append(Movies(
+                    id: movieIterator.id ?? 0,
+                    posterPath: movieIterator.poster_path ?? "",
+                    title: movieIterator.title ?? "",
+                    overview: movieIterator.overview ?? "",
+                    release_date: movieIterator.release_date ?? ""
                 )
             )
         }
@@ -162,8 +193,43 @@ class SOMoviesTVC: UITableViewController {
     }
     
     @IBAction func filterButtonPressed(_ sender: Any) {
-        print("filter button pressed")
+        getReleaseDates ()
     }
+    
+    func getReleaseDates() {
+        //call some function to ask for release dates values from users with validation of time.
+        callFilteredMovies(till: tillReleaseYear, from: fromReleaseYear)
+    }
+    
+    func callFilteredMovies(till: String, from: String) {
+        DiscoverMovieMDB.discoverMovies(
+            apikey: apikey, language: "EN", page: 1,
+            primary_release_date_gte: from,
+            primary_release_date_lte: till) {
+                data, moviesReleaseDateFilterArray  in
+                if let movieArr = moviesReleaseDateFilterArray {
+                    self.title = kReleaseDates
+                    self.getFilteredMovies(movieData: movieArr)
+                    self.reloadTable()
+                }
+        }
+    }
+    
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offset:CGPoint = scrollView.contentOffset
+//        let bounds:CGRect = scrollView.bounds
+//        let size:CGSize = scrollView.contentSize
+//        let inset:UIEdgeInsets = scrollView.contentInset
+//        let y:CGFloat = offset.y + bounds.size.height - inset.bottom
+//        let h:CGFloat = size.height
+//        let reload_distance:CGFloat = 0
+//        if(y > h + reload_distance) {
+//            print("load more rows down");
+////            self.pageNumber = self.pageNumber + 1
+////            print(self.pageNumber)
+////            refreshMoviesList()
+//        }
+//    }
  
 }
 

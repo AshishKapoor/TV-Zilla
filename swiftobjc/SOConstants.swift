@@ -17,6 +17,7 @@ let kTopRatedMovies     = "Top Rated Movies"
 let kNowPlayingMovies   = "Now Playing"
 let kUpcomingMovies     = "Upcoming Movies"
 let kPopularMovies      = "Popular Movies"
+let kReleaseDates       = "Release Dates"
 
 enum typeOfMovies: String {
     case upcoming
