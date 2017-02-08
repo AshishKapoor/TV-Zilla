@@ -22,6 +22,7 @@ class SOMoviesDetailVC: UIViewController {
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieOverviewLabel: UILabel!
     @IBOutlet weak var movieReleaseYearLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class SOMoviesDetailVC: UIViewController {
         movieTitleLabel.text        = movieTitle
         movieOverviewLabel.text     = movieOverview
         movieReleaseYearLabel.text  = movieReleaseDate
+        backgroundImage.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL))
     }
 
 }

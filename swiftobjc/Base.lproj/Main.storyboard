@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,10 +25,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ev-63-rZX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="9oF-kf-jjB"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="667" id="Dsg-Nt-r3y"/>
+                                    <constraint firstAttribute="height" constant="667" id="PGj-Lo-pXY"/>
+                                    <constraint firstAttribute="width" secondItem="9ev-63-rZX" secondAttribute="height" multiplier="375:667" id="WX7-Kl-1cq"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="kR8-dt-rSC"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="movie-poster-not-found" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
                                 <rect key="frame" x="70" y="28" width="230" height="321"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-sQ-WaC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-sQ-WaC">
                                 <rect key="frame" x="17" y="395" width="35" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,13 +59,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAM-YJ-LcJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Movie ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAM-YJ-LcJ">
                                 <rect key="frame" x="17" y="369" width="71" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsw-3D-pad">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsw-3D-pad">
                                 <rect key="frame" x="158" y="367" width="202" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,23 +108,32 @@
                             <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leadingMargin" constant="54" id="Rdl-hZ-gxr"/>
                             <constraint firstItem="cL3-ag-Zd1" firstAttribute="top" secondItem="Exr-gd-qwO" secondAttribute="bottom" constant="8" symbolic="YES" id="VYP-V2-mV8"/>
                             <constraint firstItem="PPR-cm-eGM" firstAttribute="top" secondItem="cL3-ag-Zd1" secondAttribute="bottom" constant="-107" id="X0i-Gt-0yt"/>
+                            <constraint firstItem="5fG-RT-5ET" firstAttribute="top" secondItem="9ev-63-rZX" secondAttribute="bottom" id="XCx-R9-J7m"/>
                             <constraint firstItem="Exr-gd-qwO" firstAttribute="trailing" secondItem="cL3-ag-Zd1" secondAttribute="trailing" id="ZSt-zA-56M"/>
                             <constraint firstItem="lsw-3D-pad" firstAttribute="top" secondItem="UgX-MN-MJe" secondAttribute="bottom" constant="18" id="aqX-dX-2d9"/>
+                            <constraint firstAttribute="trailing" secondItem="9ev-63-rZX" secondAttribute="trailing" id="c67-cD-eiR"/>
+                            <constraint firstItem="9ev-63-rZX" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leading" id="eCP-Rm-BWl"/>
+                            <constraint firstItem="9ev-63-rZX" firstAttribute="top" secondItem="M0j-Uh-pvS" secondAttribute="top" id="eY8-wk-KG4"/>
                             <constraint firstItem="lsw-3D-pad" firstAttribute="leading" secondItem="MAM-YJ-LcJ" secondAttribute="trailing" constant="70" id="ebZ-1g-ZPG"/>
                             <constraint firstItem="aL1-EI-fKD" firstAttribute="centerY" secondItem="1qa-fC-YvS" secondAttribute="centerY" id="fdh-zf-qpP"/>
+                            <constraint firstAttribute="trailing" secondItem="9ev-63-rZX" secondAttribute="trailing" id="iOX-2A-ky9"/>
                             <constraint firstItem="1qa-fC-YvS" firstAttribute="baseline" secondItem="aL1-EI-fKD" secondAttribute="firstBaseline" id="lZJ-BS-9SL"/>
+                            <constraint firstItem="9ev-63-rZX" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leading" id="mC4-JU-mMm"/>
                             <constraint firstAttribute="bottom" secondItem="1qa-fC-YvS" secondAttribute="bottom" constant="20" symbolic="YES" id="pdH-yd-nFt"/>
                             <constraint firstItem="b1f-sQ-WaC" firstAttribute="top" secondItem="MAM-YJ-LcJ" secondAttribute="bottom" constant="8" symbolic="YES" id="plf-18-duk"/>
+                            <constraint firstItem="9ev-63-rZX" firstAttribute="top" secondItem="M0j-Uh-pvS" secondAttribute="top" id="ptL-Go-gRq"/>
                             <constraint firstItem="lsw-3D-pad" firstAttribute="trailing" secondItem="Exr-gd-qwO" secondAttribute="trailing" id="qPD-gh-0ee"/>
                             <constraint firstItem="cL3-ag-Zd1" firstAttribute="leading" secondItem="PPR-cm-eGM" secondAttribute="trailing" constant="72" id="s4O-O3-viq"/>
                             <constraint firstItem="Exr-gd-qwO" firstAttribute="leading" secondItem="cL3-ag-Zd1" secondAttribute="leading" id="tow-Zs-2HV"/>
                             <constraint firstItem="cL3-ag-Zd1" firstAttribute="trailing" secondItem="aL1-EI-fKD" secondAttribute="trailing" id="vUe-Me-Ca6"/>
+                            <constraint firstItem="5fG-RT-5ET" firstAttribute="top" secondItem="9ev-63-rZX" secondAttribute="bottom" id="vwb-C9-AjR"/>
                             <constraint firstItem="1qa-fC-YvS" firstAttribute="bottom" secondItem="aL1-EI-fKD" secondAttribute="bottom" id="xOO-Qh-Kle"/>
                             <constraint firstItem="PPR-cm-eGM" firstAttribute="centerY" secondItem="cL3-ag-Zd1" secondAttribute="centerY" id="yJN-5n-l7n"/>
                             <constraint firstItem="lsw-3D-pad" firstAttribute="leading" secondItem="Exr-gd-qwO" secondAttribute="leading" id="yhq-gZ-D9m"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImage" destination="9ev-63-rZX" id="Dgg-iB-8HW"/>
                         <outlet property="backgroundImageView" destination="UgX-MN-MJe" id="K4w-mW-bjG"/>
                         <outlet property="movieIDLabel" destination="lsw-3D-pad" id="S2H-67-kQG"/>
                         <outlet property="movieOverviewLabel" destination="cL3-ag-Zd1" id="Rta-DJ-qVl"/>
@@ -262,5 +282,6 @@
     <resources>
         <image name="filter-bar-view-icon" width="20" height="20"/>
         <image name="list-bar-view-icon" width="20" height="20"/>
+        <image name="movie-poster-not-found" width="227" height="227"/>
     </resources>
 </document>
