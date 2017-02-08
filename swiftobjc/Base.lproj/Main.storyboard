@@ -87,9 +87,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie-poster-not-found" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
-                                <rect key="frame" x="72" y="28" width="230" height="306"/>
+                                <rect key="frame" x="88" y="28" width="198" height="275"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="306" id="v8b-if-6CD"/>
+                                    <constraint firstAttribute="height" constant="275" id="v8b-if-6CD"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -99,7 +99,7 @@
                             <constraint firstItem="b1f-sQ-WaC" firstAttribute="leading" secondItem="PPR-cm-eGM" secondAttribute="leading" id="7ak-hV-w7H"/>
                             <constraint firstItem="aL1-EI-fKD" firstAttribute="leading" secondItem="1qa-fC-YvS" secondAttribute="trailing" constant="31" id="81E-qN-CJa"/>
                             <constraint firstItem="PPR-cm-eGM" firstAttribute="leading" secondItem="1qa-fC-YvS" secondAttribute="leading" id="8h4-xS-nlO"/>
-                            <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leadingMargin" constant="56" id="A17-Wr-G3f"/>
+                            <constraint firstItem="UgX-MN-MJe" firstAttribute="leading" secondItem="M0j-Uh-pvS" secondAttribute="leadingMargin" constant="72" id="A17-Wr-G3f"/>
                             <constraint firstItem="aL1-EI-fKD" firstAttribute="top" secondItem="cL3-ag-Zd1" secondAttribute="bottom" constant="6" id="AXK-lF-Lw9"/>
                             <constraint firstItem="b1f-sQ-WaC" firstAttribute="baseline" secondItem="Exr-gd-qwO" secondAttribute="baseline" id="BZk-Ll-5mV"/>
                             <constraint firstItem="cL3-ag-Zd1" firstAttribute="leading" secondItem="aL1-EI-fKD" secondAttribute="leading" id="CY4-nI-Hgq"/>
