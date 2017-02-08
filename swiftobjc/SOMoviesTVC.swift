@@ -196,6 +196,7 @@ class SOMoviesTVC: UITableViewController {
     }
     
     func callFilteredMovies(till: String, from: String) {
+        self.title = kReleaseDates
         DiscoverMovieMDB.discoverMovies(
             apikey: apikey, language: "EN", page: 1,
             primary_release_date_gte: from,
