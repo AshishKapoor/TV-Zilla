@@ -15,3 +15,10 @@ An app that utilizes TMDb API for displaying list of movies with details having 
 
 ##Filter with Release Date
 <img src="./swiftobjc/screenshots/releasedate.png" alt="Drawing" style="width="40" height="80"/>
+
+
+##Cocoapods: 
+(User of OpenSource)
+SCPopDatePicker
+TMDBSwift
+Kingfisher
