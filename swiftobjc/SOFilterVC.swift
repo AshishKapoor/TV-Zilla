@@ -19,7 +19,6 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
  
     // Delegate function for the Picker protocol
@@ -37,10 +36,6 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
             let date                    = formatter.string(from: date)
             self.tillReleaseDateTF.text = String(describing: date)
         }
-    }
-
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        _ = self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {

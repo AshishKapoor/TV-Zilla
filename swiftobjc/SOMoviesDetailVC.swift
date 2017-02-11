@@ -28,6 +28,7 @@ class SOMoviesDetailVC: UIViewController {
         super.viewDidLoad()
         // This function loads all the received values from the abstract list view.
         loadReceivedValues()
+        title = movieTitle
     }
     
     func loadReceivedValues() {
