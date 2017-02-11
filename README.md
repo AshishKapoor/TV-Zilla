@@ -18,7 +18,7 @@ An app that utilizes TMDb API for displaying list of movies with details having 
 
 
 ##Cocoapods: 
-(User of OpenSource)
-SCPopDatePicker
-TMDBSwift
-Kingfisher
+(Use of OpenSource)
+SCPopDatePicker,
+TMDBSwift,
+Kingfisher.

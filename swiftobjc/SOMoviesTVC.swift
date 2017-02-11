@@ -12,10 +12,10 @@ import Kingfisher
 
 class SOMoviesTVC: UITableViewController {
     
-    var movies                          = [Movies]()
+    var movies: [Movies]                = []
     var status: LoadingStatus?          = nil
-    var pageNumber: Int                 = Int()
-    var totalPages: Int                 = Int()
+    var pageNumber                      = Int()
+    var totalPages                      = Int()
     var fromReleaseYear                 = String()
     var tillReleaseYear                 = String()
     var currentMovieType                = typeOfMovies.nowPlaying
@@ -30,11 +30,14 @@ class SOMoviesTVC: UITableViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        clearOldList()
+    }
+    
     func setupRefreshControl() {
         // Refresh control
-        self.refreshControl?.addTarget(self,
-                                       action: #selector(SOMoviesTVC.refreshMoviesList),
-                                       for: UIControlEvents.valueChanged
+        self.refreshControl?.addTarget(self, action: #selector(refreshMoviesList), for: UIControlEvents.valueChanged
         )
         self.refreshControl?.tintColor = UIColor.black
     }
@@ -55,11 +58,6 @@ class SOMoviesTVC: UITableViewController {
         self.tableView.backgroundColor = kTableViewBackgroundColor
         // to remove the unwanted cells from footer.
         self.tableView.tableFooterView = UIView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func typeButtonPressed(_ sender: Any) {
@@ -111,8 +109,7 @@ class SOMoviesTVC: UITableViewController {
         }
         actionSheetController.addAction(popularButton)
         
-        let cancleActionButton = UIAlertAction(title: "Cancel",
-                                               style: .cancel) { action -> Void in
+        let cancleActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             print("Do nothing")
         }
         actionSheetController.addAction(cancleActionButton)
@@ -178,11 +175,6 @@ class SOMoviesTVC: UITableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        clearOldList()
-    }
-    
     func getMovies(movieData: [MovieMDB] ) {
         for movieIterator in movieData {
             self.movies.append(Movies(
@@ -239,7 +231,7 @@ extension SOMoviesTVC {
             cell.moviesImageView.kf.setImage(with: self.movies[indexPath.row].getPosterURL(),
                                              placeholder: UIImage(named: "movie-poster-not-found"),
                                              options: nil, progressBlock: nil, completionHandler: nil)
-            cell.moviePlotLabel.text = self.movies[indexPath.row].overview
+            cell.moviePlotLabel.text         = self.movies[indexPath.row].overview
         }
         
         return cell
@@ -263,7 +255,6 @@ extension SOMoviesTVC {
             let lastRowIndex = tableView.numberOfRows(inSection: 0)
             if indexPath.row == lastRowIndex - 1 {
                 self.pageNumber = self.pageNumber + 1
-
                 switch self.currentMovieType {
                 case .filtered:
                     setType(type: .filtered)

@@ -26,15 +26,15 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     func scPopDatePickerDidSelectDate(_ date: Date) {
         if fromReleaseDateTF.isEditing {
             self.fromReleaseDateTF.endEditing(true)
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let date = formatter.string(from: date)
+            let formatter               = DateFormatter()
+            formatter.dateFormat        = "yyyy-MM-dd"
+            let date                    = formatter.string(from: date)
             self.fromReleaseDateTF.text = String(describing: date)
         } else if tillReleaseDateTF.isEditing {
             self.tillReleaseDateTF.endEditing(true)
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let date = formatter.string(from: date)
+            let formatter               = DateFormatter()
+            formatter.dateFormat        = "yyyy-MM-dd"
+            let date                    = formatter.string(from: date)
             self.tillReleaseDateTF.text = String(describing: date)
         }
     }
@@ -47,10 +47,11 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
         if (checkEmptyFields()) {
             if (checkDateValidation()) {
                 let soMoviesTVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesTVC") as? SOMoviesTVC
-                soMoviesTVC?.tillReleaseYear = self.tillReleaseDateTF.text!
-                soMoviesTVC?.fromReleaseYear = self.fromReleaseDateTF.text!
-                soMoviesTVC?.pageNumber = 1
-                soMoviesTVC?.currentMovieType = .filtered
+                soMoviesTVC?.tillReleaseYear    = self.tillReleaseDateTF.text!
+                soMoviesTVC?.fromReleaseYear    = self.fromReleaseDateTF.text!
+                soMoviesTVC?.pageNumber         = 1
+                soMoviesTVC?.currentMovieType   = .filtered
+                soMoviesTVC?.title              = kReleaseDates
                 soMoviesTVC?.setType(type: .filtered)
                 self.navigationController?.pushViewController(soMoviesTVC!, animated: true)
             } else {
@@ -86,14 +87,14 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     }
     
     func showDatePicker() {
-        self.datePicker.tapToDismiss = false
-        self.datePicker.datePickerType = SCDatePickerType.date
-        self.datePicker.showBlur = true
-        self.datePicker.datePickerStartDate = self.date
-        self.datePicker.btnFontColour = UIColor.white
-        self.datePicker.btnColour = UIColor.darkGray
-        self.datePicker.showCornerRadius = false
-        self.datePicker.delegate = self
+        self.datePicker.tapToDismiss            = false
+        self.datePicker.datePickerType          = SCDatePickerType.date
+        self.datePicker.showBlur                = true
+        self.datePicker.datePickerStartDate     = self.date
+        self.datePicker.btnFontColour           = UIColor.white
+        self.datePicker.btnColour               = UIColor.darkGray
+        self.datePicker.showCornerRadius        = false
+        self.datePicker.delegate                = self
         self.datePicker.show(attachToView: self.view)
     }
     
