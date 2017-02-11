@@ -24,6 +24,7 @@ enum typeOfMovies: String {
     case topRated
     case nowPlaying
     case popular
+    case filtered
 }
 
 // Table and defaults

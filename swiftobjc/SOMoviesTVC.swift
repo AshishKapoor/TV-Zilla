@@ -12,11 +12,13 @@ import Kingfisher
 
 class SOMoviesTVC: UITableViewController {
     
-    var movies                  = [Movies]()
-    var status: LoadingStatus?  = nil
-    var pageNumber: Int         = Int()
-    var fromReleaseYear         = String()
-    var tillReleaseYear         = String()
+    var movies                          = [Movies]()
+    var status: LoadingStatus?          = nil
+    var pageNumber: Int                 = Int()
+    var totalPages: Int                 = Int()
+    var fromReleaseYear                 = String()
+    var tillReleaseYear                 = String()
+    var currentMovieType                = typeOfMovies.nowPlaying
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,27 +79,35 @@ class SOMoviesTVC: UITableViewController {
             preferredStyle: .actionSheet
         )
         
-        let nowPlayingButton = UIAlertAction(title: "Now Playing",
-                                             style: .default) { action -> Void in
+        let nowPlayingButton = UIAlertAction(title: "Now Playing", style: .default) { action -> Void in
             self.setType(type: .nowPlaying)
+            self.currentMovieType = .nowPlaying
+            self.clearOldList()
+            self.refreshMoviesList()
         }
         actionSheetController.addAction(nowPlayingButton)
         
-        let upcomingButton = UIAlertAction(title: "Upcoming",
-                                           style: .default) { action -> Void in
+        let upcomingButton = UIAlertAction(title: "Upcoming", style: .default) { action -> Void in
             self.setType(type: .upcoming)
+            self.currentMovieType = .upcoming
+            self.clearOldList()
+            self.refreshMoviesList()
         }
         actionSheetController.addAction(upcomingButton)
         
-        let topRatedButton = UIAlertAction(title: "Top Rated",
-                                           style: .default) { action -> Void in
+        let topRatedButton = UIAlertAction(title: "Top Rated", style: .default) { action -> Void in
             self.setType(type: .topRated)
+            self.currentMovieType = .topRated
+            self.clearOldList()
+            self.refreshMoviesList()
         }
         actionSheetController.addAction(topRatedButton)
         
-        let popularButton = UIAlertAction(title: "Popular",
-                                          style: .default) { action -> Void in
+        let popularButton = UIAlertAction(title: "Popular", style: .default) { action -> Void in
             self.setType(type: .popular)
+            self.currentMovieType = .popular
+            self.clearOldList()
+            self.refreshMoviesList()
         }
         actionSheetController.addAction(popularButton)
         
@@ -110,18 +120,16 @@ class SOMoviesTVC: UITableViewController {
         self.present(actionSheetController, animated: true, completion: nil)
     }
     
-    func setType(type: typeOfMovies) -> Void {
-        
-        self.clearOldList()
+    func setType(type: typeOfMovies) {
         
         switch type {
         case .topRated:
             MovieMDB.toprated(apikey, language: "en", page: self.pageNumber) {
                 data, topRatedMovies in
                 if let movie = topRatedMovies {
+                    self.totalPages = (data.pageResults?.total_pages)!
                     self.title = kTopRatedMovies
                     self.getMovies(movieData: movie)
-                    self.reloadTable()
                 }
             }
             break
@@ -129,9 +137,9 @@ class SOMoviesTVC: UITableViewController {
             MovieMDB.nowplaying(apikey, language: "en", page: self.pageNumber) {
                 data, nowPlaying in
                 if let movie = nowPlaying {
+                    self.totalPages = (data.pageResults?.total_pages)!
                     self.title = kNowPlayingMovies
                     self.getMovies(movieData: movie)
-                    self.reloadTable()
                 }
             }
             break
@@ -139,9 +147,9 @@ class SOMoviesTVC: UITableViewController {
             MovieMDB.upcoming(apikey, page: self.pageNumber, language: "en") {
                 data, upcomingMovies in
                 if let movie = upcomingMovies {
+                    self.totalPages = (data.pageResults?.total_pages)!
                     self.title = kUpcomingMovies
                     self.getMovies(movieData: movie)
-                    self.reloadTable()
                 }
             }
             break
@@ -149,13 +157,30 @@ class SOMoviesTVC: UITableViewController {
             MovieMDB.popular(apikey, language: "en", page: self.pageNumber) {
                 data, popularMovies in
                 if let movie = popularMovies {
+                    self.totalPages = (data.pageResults?.total_pages)!
                     self.title = kPopularMovies
                     self.getMovies(movieData: movie)
-                    self.reloadTable()
+                }
+            }
+            break
+        case .filtered:
+            DiscoverMovieMDB.discoverMovies(apikey: apikey, language: "EN", page: self.pageNumber,
+                                            primary_release_date_gte: self.fromReleaseYear,
+                                            primary_release_date_lte: self.tillReleaseYear) {
+                data, filteredMovies  in
+                if let movie = filteredMovies {
+                    self.totalPages = (data.pageResults?.total_pages)!
+                    self.title = kReleaseDates
+                    self.getMovies(movieData: movie)
                 }
             }
             break
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        clearOldList()
     }
     
     func getMovies(movieData: [MovieMDB] ) {
@@ -169,21 +194,7 @@ class SOMoviesTVC: UITableViewController {
                 )
             )
         }
-    }
-    
-    func getFilteredMovies(movieData: [MovieMDB]) {
-        self.clearOldList()
-
-        for movieIterator in movieData {
-            self.movies.append(Movies(
-                    id: movieIterator.id ?? 0,
-                    posterPath: movieIterator.poster_path ?? "",
-                    title: movieIterator.title ?? "",
-                    overview: movieIterator.overview ?? "",
-                    release_date: movieIterator.release_date ?? ""
-                )
-            )
-        }
+        self.reloadTable()
     }
 
     func reloadTable() {
@@ -195,37 +206,6 @@ class SOMoviesTVC: UITableViewController {
         let soFilterVC = soStoryBoard.instantiateViewController(withIdentifier: "SOFilterVC") as? SOFilterVC
         self.navigationController?.pushViewController(soFilterVC!, animated: true)
     }
-    
-    func callFilteredMovies(till: String, from: String) {
-        self.title = kReleaseDates
-        DiscoverMovieMDB.discoverMovies(
-            apikey: apikey, language: "EN", page: 1,
-            primary_release_date_gte: from,
-            primary_release_date_lte: till) {
-                data, moviesReleaseDateFilterArray  in
-                if let movieArr = moviesReleaseDateFilterArray {
-                    self.title = kReleaseDates
-                    self.getFilteredMovies(movieData: movieArr)
-                    self.reloadTable()
-                }
-        }
-    }
-    
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offset:CGPoint = scrollView.contentOffset
-//        let bounds:CGRect = scrollView.bounds
-//        let size:CGSize = scrollView.contentSize
-//        let inset:UIEdgeInsets = scrollView.contentInset
-//        let y:CGFloat = offset.y + bounds.size.height - inset.bottom
-//        let h:CGFloat = size.height
-//        let reload_distance:CGFloat = 0
-//        if(y > h + reload_distance) {
-//            print("load more rows down");
-////            self.pageNumber = self.pageNumber + 1
-////            print(self.pageNumber)
-////            refreshMoviesList()
-//        }
-//    }
  
 }
 
@@ -274,6 +254,34 @@ extension SOMoviesTVC {
             soMoviesDetailVC?.movieTitle            = self.movies[indexPath.row].title
             soMoviesDetailVC?.movieReleaseDate      = self.movies[indexPath.row].releaseDate
             self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
+        }
+    }
+    
+    // Added infinite scroll
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.pageNumber <= totalPages {
+            let lastRowIndex = tableView.numberOfRows(inSection: 0)
+            if indexPath.row == lastRowIndex - 1 {
+                self.pageNumber = self.pageNumber + 1
+
+                switch self.currentMovieType {
+                case .filtered:
+                    setType(type: .filtered)
+                    break
+                case .upcoming:
+                    setType(type: .upcoming)
+                    break
+                case .topRated:
+                    setType(type: .topRated)
+                    break
+                case .popular:
+                    setType(type: .popular)
+                    break
+                case .nowPlaying:
+                    setType(type: .nowPlaying)
+                    break
+                }
+            }
         }
     }
 }

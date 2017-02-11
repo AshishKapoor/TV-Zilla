@@ -47,7 +47,11 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
         if (checkEmptyFields()) {
             if (checkDateValidation()) {
                 let soMoviesTVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesTVC") as? SOMoviesTVC
-                soMoviesTVC?.callFilteredMovies(till: self.tillReleaseDateTF.text!, from: self.fromReleaseDateTF.text!)
+                soMoviesTVC?.tillReleaseYear = self.tillReleaseDateTF.text!
+                soMoviesTVC?.fromReleaseYear = self.fromReleaseDateTF.text!
+                soMoviesTVC?.pageNumber = 1
+                soMoviesTVC?.currentMovieType = .filtered
+                soMoviesTVC?.setType(type: .filtered)
                 self.navigationController?.pushViewController(soMoviesTVC!, animated: true)
             } else {
                 let alert = UIAlertController(title: "Enter correct date", message: "Please select correct dates", preferredStyle: UIAlertControllerStyle.alert)
