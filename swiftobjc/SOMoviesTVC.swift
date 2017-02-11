@@ -19,12 +19,14 @@ class SOMoviesTVC: UITableViewController {
     var fromReleaseYear                 = String()
     var tillReleaseYear                 = String()
     var currentMovieType                = typeOfMovies.nowPlaying
+    var isFromFilteredMovies            = Bool()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "SwiftObjc"
         pageNumber = 1
-
+        isFromFilteredMovies = false
         setupRefreshControl()
         loadMovies()
         setupTableView()
@@ -32,13 +34,14 @@ class SOMoviesTVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        clearOldList()
+        if (isFromFilteredMovies) {
+            clearOldList()
+        }
     }
     
     func setupRefreshControl() {
         // Refresh control
-        self.refreshControl?.addTarget(self, action: #selector(refreshMoviesList), for: UIControlEvents.valueChanged
-        )
+        self.refreshControl?.addTarget(self, action: #selector(refreshMoviesList), for: UIControlEvents.valueChanged)
         self.refreshControl?.tintColor = UIColor.black
     }
     
@@ -53,7 +56,7 @@ class SOMoviesTVC: UITableViewController {
     }
     
     func setupTableView() {
-        // Uncomment the following line to preserve selection between presentations
+        // to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
         self.tableView.backgroundColor = kTableViewBackgroundColor
         // to remove the unwanted cells from footer.
