@@ -19,23 +19,22 @@ class SOMoviesTVC: UITableViewController {
     var fromReleaseYear                 = String()
     var tillReleaseYear                 = String()
     var currentMovieType                = typeOfMovies.nowPlaying
-    var isFromFilteredMovies            = Bool()
+    var isFromFilteredMovies            = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "SwiftObjc"
         pageNumber = 1
-        isFromFilteredMovies = false
         setupRefreshControl()
-        loadMovies()
         setupTableView()
+        setType(type: currentMovieType)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if (isFromFilteredMovies) {
             clearOldList()
+            isFromFilteredMovies = false
         }
     }
     
@@ -45,9 +44,6 @@ class SOMoviesTVC: UITableViewController {
         self.refreshControl?.tintColor = UIColor.black
     }
     
-    func loadMovies() {
-        setType(type: .nowPlaying)
-    }
     
     func refreshMoviesList() {
         self.refreshControl?.beginRefreshing()
@@ -113,7 +109,7 @@ class SOMoviesTVC: UITableViewController {
         actionSheetController.addAction(popularButton)
         
         let cancleActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            print("Do nothing")
+            //Do nothing.
         }
         actionSheetController.addAction(cancleActionButton)
         
