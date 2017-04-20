@@ -18,6 +18,7 @@ class Movies {
     private var _poster_path        = String()
     
     init(id: Int?, posterPath: String?, title:String?, overview:String?, release_date:String?) {
+        
         self._id                    = id                ?? 0
         self._title                 = title             ?? ""
         self._release_date          = release_date      ?? ""
@@ -26,28 +27,12 @@ class Movies {
     }
     
     // Getters
-    var id: Int {
-        return _id
-    }
+    var id: Int                     { return _id }
+    var title: String               { return _title }
+    var releaseDate: String         { return _release_date }
+    var overview: String            { return _overview }
+    var posterPath: String          { return _poster_path }
     
-    var title: String {
-        return _title
-    }
-    
-    var releaseDate: String {
-        return _release_date
-    }
-    
-    var overview: String {
-        return _overview
-    }
-    
-    var posterPath: String {
-        return _poster_path
-    }
-
-    func getPosterURL() -> URL {
-        return getTMDBUrl(posterPath: posterPath)
-    }
-    
+    // Helper method for posters
+    func getPosterURL() -> URL      { return getTMDBUrl(posterPath: posterPath) }
 }

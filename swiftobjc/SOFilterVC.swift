@@ -17,22 +17,20 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     @IBOutlet weak var fromReleaseDateTF: UITextField!
     @IBOutlet weak var tillReleaseDateTF: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    override func viewDidLoad() { super.viewDidLoad() }
  
     // Delegate function for the Picker protocol
     func scPopDatePickerDidSelectDate(_ date: Date) {
         if fromReleaseDateTF.isEditing {
             self.fromReleaseDateTF.endEditing(true)
             let formatter               = DateFormatter()
-            formatter.dateFormat        = "yyyy-MM-dd"
+            formatter.dateFormat        = kDateTimeFormat
             let date                    = formatter.string(from: date)
             self.fromReleaseDateTF.text = String(describing: date)
         } else if tillReleaseDateTF.isEditing {
             self.tillReleaseDateTF.endEditing(true)
             let formatter               = DateFormatter()
-            formatter.dateFormat        = "yyyy-MM-dd"
+            formatter.dateFormat        = kDateTimeFormat
             let date                    = formatter.string(from: date)
             self.tillReleaseDateTF.text = String(describing: date)
         }
@@ -52,7 +50,7 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
                 self.navigationController?.pushViewController(soMoviesTVC!, animated: true)
             } else {
                 let alert = UIAlertController(title: "Enter correct date", message: "Please select correct dates", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                alert.addAction(UIAlertAction(title: kOkay, style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -62,14 +60,14 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
         
         if (self.fromReleaseDateTF.text? .isEqual(""))! {
             let alert = UIAlertController(title: "Enter from value", message: "Please select a date", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: kOkay, style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return false
         }
         
         if (self.tillReleaseDateTF.text? .isEqual(""))! {
             let alert = UIAlertController(title: "Enter till value", message: "Please select a date", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: kOkay, style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return false
         }
@@ -96,12 +94,8 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     
     // Textfield actions
     
-    @IBAction func beginEditingFromTF(_ sender: Any) {
-        showDatePicker()
-    }
+    @IBAction func beginEditingFromTF(_ sender: Any) { showDatePicker() }
     
-    @IBAction func beginEditingTillTF(_ sender: Any) {
-        showDatePicker()
-    }
+    @IBAction func beginEditingTillTF(_ sender: Any) { showDatePicker() }
     
 }

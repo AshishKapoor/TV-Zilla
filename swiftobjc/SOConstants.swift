@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 // TMDb ApiKey-v3
-let apikey      = "2de045dee84cbaea635494518315f957"
+let apikey                      = "2de045dee84cbaea635494518315f957"
 
 // List of movies type
-let kTopRatedMovies     = "Top Rated Movies"
-let kNowPlayingMovies   = "Now Playing"
-let kUpcomingMovies     = "Upcoming Movies"
-let kPopularMovies      = "Popular Movies"
-let kReleaseDates       = "Release Dates"
+let kTopRatedMovies             = "Top Rated Movies"
+let kNowPlayingMovies           = "Now Playing"
+let kUpcomingMovies             = "Upcoming Movies"
+let kPopularMovies              = "Popular Movies"
+let kReleaseDates               = "Release Dates"
 
 enum typeOfMovies: String {
     case upcoming
@@ -28,9 +28,9 @@ enum typeOfMovies: String {
 }
 
 // Table and defaults
-let kLoadingStateText   = "Loading..."
+let kLoadingStateText           = "Loading..."
 let kTableViewBackgroundColor   = UIColor.init(white: 0.969, alpha: 1.000)
-let kDefaultMovieImage  = UIImage(named: "movie-poster-not-found")
+let kDefaultMovieImage          = UIImage(named: "movie-poster-not-found")
 
 enum LoadingStatus {
     case StatusLoading
@@ -38,8 +38,16 @@ enum LoadingStatus {
     case StatusLoadingFailed
 }
 
-let soStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+let kDateTimeFormat             = "yyyy-MM-dd"
+let kEnglishLanguage            = "en"
+let kCancel                     = "Cancel"
+let kOkay                       = "Okay"
+
+let kInitialValue               = 1
+
+let soStoryBoard: UIStoryboard  = UIStoryboard(name: "Main", bundle: nil)
 
 func getTMDBUrl (posterPath: String) -> URL {
     return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")!
 }
+

@@ -24,7 +24,7 @@ class SOMoviesTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageNumber = 1
+        pageNumber = kInitialValue
         setupRefreshControl()
         setupTableView()
         setType(type: currentMovieType)
@@ -79,7 +79,7 @@ class SOMoviesTVC: UITableViewController {
             preferredStyle: .actionSheet
         )
         
-        let nowPlayingButton = UIAlertAction(title: "Now Playing", style: .default) { action -> Void in
+        let nowPlayingButton = UIAlertAction(title: kNowPlayingMovies, style: .default) { action -> Void in
             self.setType(type: .nowPlaying)
             self.currentMovieType = .nowPlaying
             self.clearOldList()
@@ -87,7 +87,7 @@ class SOMoviesTVC: UITableViewController {
         }
         actionSheetController.addAction(nowPlayingButton)
         
-        let upcomingButton = UIAlertAction(title: "Upcoming", style: .default) { action -> Void in
+        let upcomingButton = UIAlertAction(title: kUpcomingMovies, style: .default) { action -> Void in
             self.setType(type: .upcoming)
             self.currentMovieType = .upcoming
             self.clearOldList()
@@ -95,7 +95,7 @@ class SOMoviesTVC: UITableViewController {
         }
         actionSheetController.addAction(upcomingButton)
         
-        let topRatedButton = UIAlertAction(title: "Top Rated", style: .default) { action -> Void in
+        let topRatedButton = UIAlertAction(title: kTopRatedMovies, style: .default) { action -> Void in
             self.setType(type: .topRated)
             self.currentMovieType = .topRated
             self.clearOldList()
@@ -103,7 +103,7 @@ class SOMoviesTVC: UITableViewController {
         }
         actionSheetController.addAction(topRatedButton)
         
-        let popularButton = UIAlertAction(title: "Popular", style: .default) { action -> Void in
+        let popularButton = UIAlertAction(title: kPopularMovies, style: .default) { action -> Void in
             self.setType(type: .popular)
             self.currentMovieType = .popular
             self.clearOldList()
@@ -111,7 +111,7 @@ class SOMoviesTVC: UITableViewController {
         }
         actionSheetController.addAction(popularButton)
         
-        let cancleActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        let cancleActionButton = UIAlertAction(title: kCancel, style: .cancel) { action -> Void in
             //Do nothing.
         }
         actionSheetController.addAction(cancleActionButton)
@@ -123,7 +123,7 @@ class SOMoviesTVC: UITableViewController {
         
         switch type {
         case .topRated:
-            MovieMDB.toprated(apikey, language: "en", page: self.pageNumber) {
+            MovieMDB.toprated(apikey, language: kEnglishLanguage, page: self.pageNumber) {
                 data, topRatedMovies in
                 if let movie = topRatedMovies {
                     self.totalPages = (data.pageResults?.total_pages)!
@@ -133,7 +133,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .nowPlaying:
-            MovieMDB.nowplaying(apikey, language: "en", page: self.pageNumber) {
+            MovieMDB.nowplaying(apikey, language: kEnglishLanguage, page: self.pageNumber) {
                 data, nowPlaying in
                 if let movie = nowPlaying {
                     self.totalPages = (data.pageResults?.total_pages)!
@@ -143,7 +143,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .upcoming:
-            MovieMDB.upcoming(apikey, page: self.pageNumber, language: "en") {
+            MovieMDB.upcoming(apikey, page: self.pageNumber, language: kEnglishLanguage) {
                 data, upcomingMovies in
                 if let movie = upcomingMovies {
                     self.totalPages = (data.pageResults?.total_pages)!
@@ -153,7 +153,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .popular:
-            MovieMDB.popular(apikey, language: "en", page: self.pageNumber) {
+            MovieMDB.popular(apikey, language: kEnglishLanguage, page: self.pageNumber) {
                 data, popularMovies in
                 if let movie = popularMovies {
                     self.totalPages = (data.pageResults?.total_pages)!
@@ -163,7 +163,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .filtered:
-            DiscoverMovieMDB.discoverMovies(apikey: apikey, language: "EN", page: self.pageNumber,
+            DiscoverMovieMDB.discoverMovies(apikey: apikey, language: kEnglishLanguage, page: self.pageNumber,
                                             primary_release_date_gte: self.fromReleaseYear,
                                             primary_release_date_lte: self.tillReleaseYear) {
                 data, filteredMovies  in
@@ -208,7 +208,7 @@ extension SOMoviesTVC {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return kInitialValue
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -255,8 +255,8 @@ extension SOMoviesTVC {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if self.pageNumber <= totalPages {
             let lastRowIndex = tableView.numberOfRows(inSection: 0)
-            if indexPath.row == lastRowIndex - 1 {
-                self.pageNumber = self.pageNumber + 1
+            if indexPath.row == lastRowIndex - kInitialValue {
+                self.pageNumber = self.pageNumber + kInitialValue
                 switch self.currentMovieType {
                 case .filtered:
                     setType(type: .filtered)
