@@ -11,13 +11,13 @@ import UIKit
 class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     
     // Outlets and properties
-    let datePicker = SCPopDatePicker()
-    let date = Date()
+    let datePicker                                  = SCPopDatePicker()
+    let date                                        = Date()
+    var currentTextField                            = UITextField()
     
     @IBOutlet weak var fromReleaseDateTF: UITextField!
     @IBOutlet weak var tillReleaseDateTF: UITextField!
     
-    var currentTextField = UITextField()
     override func viewDidLoad() { super.viewDidLoad() }
  
     // Delegate function for the Picker protocol
@@ -26,6 +26,7 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
         formatter.dateFormat                        = kDateTimeFormat
         let date                                    = formatter.string(from: date)
         currentTextField.text                       = String(describing: date)
+        title                                       = kFilter
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {
@@ -87,6 +88,12 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     // Textfield actions
     
     @IBAction func sender(_ sender: UITextField) {
+        
+        if fromReleaseDateTF.isEditing {
+            title = kMinimumYear
+        } else {
+            title = kMaximumYear
+        }
         currentTextField = sender
         currentTextField.resignFirstResponder()
         showDatePicker()
