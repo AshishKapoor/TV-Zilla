@@ -55,6 +55,9 @@ class SOMoviesTVC: UITableViewController {
         // to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
         self.tableView.backgroundColor = kTableViewBackgroundColor
+        // dynamic row height
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 90
         // to remove the unwanted cells from footer.
         self.tableView.tableFooterView = UIView()
     }
