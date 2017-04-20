@@ -17,23 +17,15 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     @IBOutlet weak var fromReleaseDateTF: UITextField!
     @IBOutlet weak var tillReleaseDateTF: UITextField!
     
+    var currentTextField = UITextField()
     override func viewDidLoad() { super.viewDidLoad() }
  
     // Delegate function for the Picker protocol
     func scPopDatePickerDidSelectDate(_ date: Date) {
-        if fromReleaseDateTF.isEditing {
-            self.fromReleaseDateTF.endEditing(true)
-            let formatter               = DateFormatter()
-            formatter.dateFormat        = kDateTimeFormat
-            let date                    = formatter.string(from: date)
-            self.fromReleaseDateTF.text = String(describing: date)
-        } else if tillReleaseDateTF.isEditing {
-            self.tillReleaseDateTF.endEditing(true)
-            let formatter               = DateFormatter()
-            formatter.dateFormat        = kDateTimeFormat
-            let date                    = formatter.string(from: date)
-            self.tillReleaseDateTF.text = String(describing: date)
-        }
+        let formatter               = DateFormatter()
+        formatter.dateFormat        = kDateTimeFormat
+        let date                    = formatter.string(from: date)
+        currentTextField.text = String(describing: date)
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {
@@ -94,8 +86,10 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     
     // Textfield actions
     
-    @IBAction func beginEditingFromTF(_ sender: Any) { showDatePicker() }
-    
-    @IBAction func beginEditingTillTF(_ sender: Any) { showDatePicker() }
-    
+    @IBAction func sender(_ sender: UITextField) {
+        currentTextField = sender
+        currentTextField.resignFirstResponder()
+        showDatePicker()
+    }
+
 }

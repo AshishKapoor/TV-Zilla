@@ -218,7 +218,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="beginEditingFromTF:" destination="0yF-Aa-3IR" eventType="editingDidBegin" id="fki-On-6lS"/>
+                                    <action selector="sender:" destination="0yF-Aa-3IR" eventType="editingDidBegin" id="IFE-cl-2zv"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uta-sD-CcU">
@@ -229,7 +229,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="beginEditingTillTF:" destination="0yF-Aa-3IR" eventType="editingDidBegin" id="Pln-1G-iot"/>
+                                    <action selector="sender:" destination="0yF-Aa-3IR" eventType="editingDidBegin" id="UWx-SZ-yiT"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Year:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrD-OH-Tnn">
