@@ -9,7 +9,7 @@ Detail View🕶             |  Filter View🌻
 
 Datepicker🕶             |  
 :-------------------------:
-<img src="./swiftobjc/screenshots/datepicker.png" alt="Drawing" width="140" height="280"/>  
+<img src="./swiftobjc/screenshots/datepicker.png" alt="Drawing" width="140" height="280"/>  |
 
 ## Cocoapods: 
 (Use of OpenSource)
