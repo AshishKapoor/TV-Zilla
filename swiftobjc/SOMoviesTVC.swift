@@ -57,7 +57,7 @@ class SOMoviesTVC: UITableViewController {
         self.tableView.backgroundColor = kTableViewBackgroundColor
         // dynamic row height
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 90
+        self.tableView.estimatedRowHeight = 120
         // to remove the unwanted cells from footer.
         self.tableView.tableFooterView = UIView()
     }
@@ -180,11 +180,11 @@ class SOMoviesTVC: UITableViewController {
     func getMovies(movieData: [MovieMDB] ) {
         for movieIterator in movieData {
             self.movies.append(Movies(
-                    id: movieIterator.id ?? 0,
-                    posterPath: movieIterator.poster_path ?? "",
-                    title: movieIterator.title ?? "",
-                    overview: movieIterator.overview ?? "",
-                    release_date: movieIterator.release_date ?? ""
+                    id: movieIterator.id,
+                    posterPath: movieIterator.poster_path,
+                    title: movieIterator.title,
+                    overview: movieIterator.overview,
+                    release_date: movieIterator.release_date
                 )
             )
         }

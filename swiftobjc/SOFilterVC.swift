@@ -22,10 +22,10 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
  
     // Delegate function for the Picker protocol
     func scPopDatePickerDidSelectDate(_ date: Date) {
-        let formatter               = DateFormatter()
-        formatter.dateFormat        = kDateTimeFormat
-        let date                    = formatter.string(from: date)
-        currentTextField.text = String(describing: date)
+        let formatter                               = DateFormatter()
+        formatter.dateFormat                        = kDateTimeFormat
+        let date                                    = formatter.string(from: date)
+        currentTextField.text                       = String(describing: date)
     }
     
     @IBAction func goButtonPressed(_ sender: Any) {
@@ -73,14 +73,14 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     }
     
     func showDatePicker() {
-        self.datePicker.tapToDismiss            = false
-        self.datePicker.datePickerType          = SCDatePickerType.date
-        self.datePicker.showBlur                = true
-        self.datePicker.datePickerStartDate     = self.date
-        self.datePicker.btnFontColour           = UIColor.white
-        self.datePicker.btnColour               = UIColor.darkGray
-        self.datePicker.showCornerRadius        = false
-        self.datePicker.delegate                = self
+        self.datePicker.tapToDismiss                = false
+        self.datePicker.datePickerType              = SCDatePickerType.date
+        self.datePicker.showBlur                    = true
+        self.datePicker.datePickerStartDate         = self.date
+        self.datePicker.btnFontColour               = UIColor.white
+        self.datePicker.btnColour                   = UIColor.darkGray
+        self.datePicker.showCornerRadius            = false
+        self.datePicker.delegate                    = self
         self.datePicker.show(attachToView: self.view)
     }
     
