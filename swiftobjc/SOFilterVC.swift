@@ -42,7 +42,7 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
                 let soMoviesTVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesTVC") as? SOMoviesTVC
                 soMoviesTVC?.tillReleaseYear        = self.tillReleaseDateTF.text!
                 soMoviesTVC?.fromReleaseYear        = self.fromReleaseDateTF.text!
-                soMoviesTVC?.pageNumber             = 1
+                soMoviesTVC?.pageNumber             = kInitialValue
                 soMoviesTVC?.currentMovieType       = .filtered
                 soMoviesTVC?.title                  = kReleaseDates
                 soMoviesTVC?.isFromFilteredMovies   = true
