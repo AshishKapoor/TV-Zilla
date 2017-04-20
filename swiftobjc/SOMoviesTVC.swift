@@ -123,55 +123,56 @@ class SOMoviesTVC: UITableViewController {
         
         switch type {
         case .topRated:
-            MovieMDB.toprated(apikey, language: kEnglishLanguage, page: self.pageNumber) {
+            MovieMDB.toprated(apikey, language: kEnglishLanguage, page: self.pageNumber) { [weak self]
                 data, topRatedMovies in
-                if let movie = topRatedMovies {
-                    self.totalPages = (data.pageResults?.total_pages)!
-                    self.title = kTopRatedMovies
-                    self.getMovies(movieData: movie)
-                }
+                guard let movie = topRatedMovies else { return }
+                
+                self?.totalPages = (data.pageResults?.total_pages)!
+                self?.title = kTopRatedMovies
+                self?.getMovies(movieData: movie)
             }
             break
         case .nowPlaying:
-            MovieMDB.nowplaying(apikey, language: kEnglishLanguage, page: self.pageNumber) {
+            MovieMDB.nowplaying(apikey, language: kEnglishLanguage, page: self.pageNumber) { [weak self]
                 data, nowPlaying in
-                if let movie = nowPlaying {
-                    self.totalPages = (data.pageResults?.total_pages)!
-                    self.title = kNowPlayingMovies
-                    self.getMovies(movieData: movie)
-                }
+                guard let movie = nowPlaying else { return }
+                
+                self?.totalPages = (data.pageResults?.total_pages)!
+                self?.title = kNowPlayingMovies
+                self?.getMovies(movieData: movie)
+                
             }
             break
         case .upcoming:
-            MovieMDB.upcoming(apikey, page: self.pageNumber, language: kEnglishLanguage) {
+            MovieMDB.upcoming(apikey, page: self.pageNumber, language: kEnglishLanguage) { [weak self]
                 data, upcomingMovies in
-                if let movie = upcomingMovies {
-                    self.totalPages = (data.pageResults?.total_pages)!
-                    self.title = kUpcomingMovies
-                    self.getMovies(movieData: movie)
-                }
+                guard let movie = upcomingMovies else { return }
+                
+                self?.totalPages = (data.pageResults?.total_pages)!
+                self?.title = kUpcomingMovies
+                self?.getMovies(movieData: movie)
             }
             break
         case .popular:
-            MovieMDB.popular(apikey, language: kEnglishLanguage, page: self.pageNumber) {
+            MovieMDB.popular(apikey, language: kEnglishLanguage, page: self.pageNumber) { [weak self]
                 data, popularMovies in
-                if let movie = popularMovies {
-                    self.totalPages = (data.pageResults?.total_pages)!
-                    self.title = kPopularMovies
-                    self.getMovies(movieData: movie)
-                }
+                guard let movie = popularMovies else { return }
+                
+                self?.totalPages = (data.pageResults?.total_pages)!
+                self?.title = kPopularMovies
+                self?.getMovies(movieData: movie)
             }
             break
         case .filtered:
             DiscoverMovieMDB.discoverMovies(apikey: apikey, language: kEnglishLanguage, page: self.pageNumber,
                                             primary_release_date_gte: self.fromReleaseYear,
-                                            primary_release_date_lte: self.tillReleaseYear) {
+                                            primary_release_date_lte: self.tillReleaseYear) { [weak self]
                 data, filteredMovies  in
-                if let movie = filteredMovies {
-                    self.totalPages = (data.pageResults?.total_pages)!
-                    self.title = kReleaseDates
-                    self.getMovies(movieData: movie)
-                }
+                guard let movie = filteredMovies else { return }
+                                                
+                self?.totalPages = (data.pageResults?.total_pages)!
+                self?.title = kReleaseDates
+                self?.getMovies(movieData: movie)
             }
             break
         }
@@ -223,17 +224,17 @@ extension SOMoviesTVC {
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         if self.status == LoadingStatus.StatusLoading {
-            cell.movieNameLabel?.text        = kLoadingStateText
-            cell.movieYearLabel?.text        = kLoadingStateText
-            cell.moviePlotLabel?.text        = kLoadingStateText
-            cell.moviesImageView?.image      = kDefaultMovieImage
+            cell.movieNameLabel?.text               = kLoadingStateText
+            cell.movieYearLabel?.text               = kLoadingStateText
+            cell.moviePlotLabel?.text               = kLoadingStateText
+            cell.moviesImageView?.image             = kDefaultMovieImage
         } else if self.status == LoadingStatus.StatusLoaded {
-            cell.movieNameLabel?.text        = self.movies[indexPath.row].title
-            cell.movieYearLabel?.text        = self.movies[indexPath.row].releaseDate
+            cell.movieNameLabel?.text               = self.movies[indexPath.row].title
+            cell.movieYearLabel?.text               = self.movies[indexPath.row].releaseDate
             cell.moviesImageView.kf.setImage(with: self.movies[indexPath.row].getPosterURL(),
                                              placeholder: UIImage(named: "movie-poster-not-found"),
                                              options: nil, progressBlock: nil, completionHandler: nil)
-            cell.moviePlotLabel.text         = self.movies[indexPath.row].overview
+            cell.moviePlotLabel.text                = self.movies[indexPath.row].overview
         }
         
         return cell

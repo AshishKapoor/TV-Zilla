@@ -43,6 +43,10 @@ let kEnglishLanguage            = "en"
 let kCancel                     = "Cancel"
 let kOkay                       = "Okay"
 
+let kMinimumYear                = "Minimum Year"
+let kMaximumYear                = "Maximum Year"
+let kFilter                     = "Filter"
+
 let kInitialValue               = 1
 
 let soStoryBoard: UIStoryboard  = UIStoryboard(name: "Main", bundle: nil)

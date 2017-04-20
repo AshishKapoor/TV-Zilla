@@ -9,10 +9,6 @@
 import UIKit
 
 class SOMainNC: UINavigationController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Root view controller.
-    }
-
+    
+    override func viewDidLoad() { super.viewDidLoad() }
 }
