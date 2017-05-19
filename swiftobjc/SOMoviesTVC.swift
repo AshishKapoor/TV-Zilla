@@ -9,8 +9,9 @@
 import UIKit
 import TMDBSwift
 import Kingfisher
+import PeekPop
 
-class SOMoviesTVC: UITableViewController {
+class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
     
     var movies: [Movies]                = []
     var status: LoadingStatus?          = nil
@@ -20,7 +21,7 @@ class SOMoviesTVC: UITableViewController {
     var tillReleaseYear                 = String()
     var currentMovieType                = typeOfMovies.nowPlaying
     var isFromFilteredMovies            = false
-    
+    var peekPop: PeekPop?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,9 @@ class SOMoviesTVC: UITableViewController {
         setupRefreshControl()
         setupTableView()
         setType(type: currentMovieType)
+        
+        peekPop = PeekPop(viewController: self)
+        peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +40,26 @@ class SOMoviesTVC: UITableViewController {
             clearOldList()
             isFromFilteredMovies = false
         }
+    }
+    
+    func previewingContext(_ previewingContext: PreviewingContext, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+        if let previewViewController = storyboard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC {
+            if let indexPath = tableView.indexPathForRow(at: location) {
+                previewViewController.moviePosterURL        = self.movies[indexPath.row].posterPath
+                previewViewController.movieID               = self.movies[indexPath.row].id
+                previewViewController.movieOverview         = self.movies[indexPath.row].overview
+                previewViewController.movieTitle            = self.movies[indexPath.row].title
+                previewViewController.movieReleaseDate      = self.movies[indexPath.row].releaseDate
+                
+                return previewViewController
+            }
+        }
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: PreviewingContext, commitViewController viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
     }
     
     func setupRefreshControl() {

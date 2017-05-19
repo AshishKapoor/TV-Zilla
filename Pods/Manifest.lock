@@ -1,15 +1,18 @@
 PODS:
   - Kingfisher (3.9.1)
+  - PeekPop (1.0.0)
   - TMDBSwift (0.3.1)
 
 DEPENDENCIES:
   - Kingfisher (~> 3.0)
+  - PeekPop (~> 1.0)
   - TMDBSwift
 
 SPEC CHECKSUMS:
   Kingfisher: 6729a0baaa458245bfb8cd5a1296c71c10d6eb6c
+  PeekPop: dcac0f339476b99eb50f8e3bc584f332c744ecf1
   TMDBSwift: 64cdc44e58c438620f771e71bd4d415f8075ff43
 
-PODFILE CHECKSUM: d140e1a5fd397d831e3c9c8154edd8d9663a30f2
+PODFILE CHECKSUM: 0699d55c8404a532de26721e432bd8d2a19c2c42
 
 COCOAPODS: 1.1.1
