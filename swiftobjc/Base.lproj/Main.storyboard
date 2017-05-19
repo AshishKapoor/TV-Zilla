@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ruJ-sq-prE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ruJ-sq-prE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -197,15 +197,12 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzz-nO-5Zx">
                                 <rect key="frame" x="162" y="574" width="50" height="50"/>
-                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="mRX-7l-LaB"/>
                                     <constraint firstAttribute="height" constant="50" id="t9O-Td-bS9"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="go">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" image="check" backgroundImage="check"/>
                                 <connections>
                                     <action selector="goButtonPressed:" destination="0yF-Aa-3IR" eventType="touchUpInside" id="6K4-At-zde"/>
                                 </connections>
@@ -410,9 +407,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="check" width="512" height="512"/>
         <image name="filter-bar-view-icon" width="20" height="20"/>
         <image name="filter-view-background" width="768" height="511"/>
-        <image name="go" width="512" height="512"/>
         <image name="list-bar-view-icon" width="20" height="20"/>
         <image name="movie-poster-not-found" width="200" height="300"/>
     </resources>
