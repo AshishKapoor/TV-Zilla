@@ -20,6 +20,9 @@
 		2D4B89111E4A0D6C00E25CE3 /* SOMoviesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B89101E4A0D6C00E25CE3 /* SOMoviesTVC.swift */; };
 		2D4B89131E4A0D8100E25CE3 /* SOMoviesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B89121E4A0D8100E25CE3 /* SOMoviesTVCell.swift */; };
 		537E9F63E978BBC43F2C4E42 /* Pods_swiftobjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E96A6BB9344C117E112548C /* Pods_swiftobjc.framework */; };
+		E3ACED5E1ECF280E00F2EAFE /* TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */; };
+		E3ACED601ECF288700F2EAFE /* SOTVShowsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */; };
+		E3ACED621ECF35CA00F2EAFE /* SOTVShowTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		2D4B89101E4A0D6C00E25CE3 /* SOMoviesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMoviesTVC.swift; sourceTree = "<group>"; };
 		2D4B89121E4A0D8100E25CE3 /* SOMoviesTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMoviesTVCell.swift; sourceTree = "<group>"; };
 		62E5BA915AC22ED77E0FB39A /* Pods-swiftobjc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftobjc.release.xcconfig"; path = "Pods/Target Support Files/Pods-swiftobjc/Pods-swiftobjc.release.xcconfig"; sourceTree = "<group>"; };
+		E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShows.swift; sourceTree = "<group>"; };
+		E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOTVShowsTVC.swift; sourceTree = "<group>"; };
+		E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOTVShowTVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 				2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */,
 				2D4B88F01E4A07EA00E25CE3 /* AppDelegate.swift */,
 				2D4B89071E4A084700E25CE3 /* Helpers */,
+				E3A928A21ECEA65200F625A4 /* Tv */,
 				2D1BD9241E4B182F00CFA756 /* Movie */,
 				2D4B88F71E4A07EA00E25CE3 /* Assets.xcassets */,
 			);
@@ -147,6 +154,40 @@
 				62E5BA915AC22ED77E0FB39A /* Pods-swiftobjc.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E3A928A21ECEA65200F625A4 /* Tv */ = {
+			isa = PBXGroup;
+			children = (
+				E3A928A51ECEA68500F625A4 /* Controller */,
+				E3A928A41ECEA67F00F625A4 /* View */,
+				E3A928A31ECEA67900F625A4 /* Model */,
+			);
+			name = Tv;
+			sourceTree = "<group>";
+		};
+		E3A928A31ECEA67900F625A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E3A928A41ECEA67F00F625A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E3A928A51ECEA68500F625A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,9 +320,12 @@
 				2D4B89111E4A0D6C00E25CE3 /* SOMoviesTVC.swift in Sources */,
 				2D4B89091E4A08AE00E25CE3 /* Movies.swift in Sources */,
 				2D4B89131E4A0D8100E25CE3 /* SOMoviesTVCell.swift in Sources */,
+				E3ACED621ECF35CA00F2EAFE /* SOTVShowTVCell.swift in Sources */,
+				E3ACED601ECF288700F2EAFE /* SOTVShowsTVC.swift in Sources */,
 				2D1BD9231E4B003100CFA756 /* SOMainNC.swift in Sources */,
 				2D4B88F11E4A07EA00E25CE3 /* AppDelegate.swift in Sources */,
 				2D4B890B1E4A0BFF00E25CE3 /* SOMoviesDetailVC.swift in Sources */,
+				E3ACED5E1ECF280E00F2EAFE /* TVShows.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

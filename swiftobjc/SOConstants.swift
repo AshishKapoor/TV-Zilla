@@ -19,6 +19,11 @@ let kUpcomingMovies             = "Upcoming Movies"
 let kPopularMovies              = "Popular Movies"
 let kReleaseDates               = "Release Dates"
 
+// List of TVShows type
+let kTopRatedTVShows            = "Top Rated TV Shows"
+let kPopularTVShows             = "Popular TV Shows"
+let kOnTheAirTVShows            = "On The Air TV Shows"
+
 enum typeOfMovies: String {
     case upcoming
     case topRated
@@ -27,10 +32,17 @@ enum typeOfMovies: String {
     case filtered
 }
 
+enum typeOfTVShows: String {
+    case ontheair
+    case toprated
+    case popular
+}
+
 // Table and defaults
 let kLoadingStateText           = "Loading..."
 let kTableViewBackgroundColor   = UIColor.init(white: 0.969, alpha: 1.000)
 let kDefaultMovieImage          = UIImage(named: "movie-poster-not-found")
+let kDefaultTVShowImage         = UIImage(named: "movie-poster-not-found")
 
 enum LoadingStatus {
     case StatusLoading

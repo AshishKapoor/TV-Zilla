@@ -69,7 +69,7 @@ class SOFilterVC: UIViewController, SCPopDatePickerDelegate {
     }
     
     func checkDateValidation() -> Bool {
-        // Add date validations with returning false. Should be less than current time at least.
+        // TODO: Add date validations with returning false. Should be less than current time at least.
         return true
     }
     

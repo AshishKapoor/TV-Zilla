@@ -70,11 +70,11 @@ public struct PersonResults: ArrayObject{
     var tvShows =  [KnownForTV]()
     var movies = [KnownForMovie]()
     
-    for i in 0..<json["known_for"].count{
-      if json["known_for"][i]["media_type"] == "tv"{
-        tvShows.append(KnownForTV.init(results: json["known_for"][i]))
+    for knownFor in json["known_for"]{
+      if knownFor.1["media_type"] == "tv"{
+        tvShows.append(KnownForTV.init(results: knownFor.1))
       }else{
-        movies.append(KnownForMovie.init(results: json["known_for"][i]))
+        movies.append(KnownForMovie.init(results: knownFor.1))
       }
     }
     known_for = (tvShows, movies)
@@ -92,21 +92,21 @@ public struct FindMDB{
   public var tv_season_results =  [TVSeasonsMDB]()
   
   public init(json: JSON){
-    if(json["movie_results"] != nil){
+    if(json["movie_results"].exists()){
       movie_results = MovieMDB.initialize(json: json["movie_results"])
     }
     
-    if(json["tv_results"] != nil){
+    if(json["tv_results"].exists()){
       tv_results = TVMDB.initialize(json: json["tv_results"])
     }
-    if(json["person_results"] != nil){
+    if(json["person_results"].exists()){
       person_results = PersonResults.initialize(json: json["person_results"])
     }
     
-    if(json["tv_episode_results"] != nil){
+    if(json["tv_episode_results"].exists()){
       tv_episode_results = TVEpisodesMDB.initialize(json: json["tv_episode_results"])
     }
-    if(json["tv_season_results"] != nil){
+    if(json["tv_season_results"].exists()){
       tv_season_results = TVSeasonsMDB.initialize(json: json["tv_seasons_results"])
     }
     
@@ -115,7 +115,7 @@ public struct FindMDB{
    The find method makes it easy to search for objects in our database by an external id. For instance, an IMDB ID. This will search all objects (movies, TV shows and people) and return the results in a single response.
    */
   
-  public static func find(_ apikey: String, id: String, external_source: ExternalIdTypes!,completion: @escaping (_ clientReturn: ClientReturn, _ data: FindMDB?) -> ()) -> (){
+  public static func find(_ apikey: String, id: String, external_source: ExternalIdTypes, completion: @escaping (_ clientReturn: ClientReturn, _ data: FindMDB?) -> ()) -> (){
     
     Client.Find(apikey, external_id: id, external_source: external_source.rawValue){
       apiReturn in

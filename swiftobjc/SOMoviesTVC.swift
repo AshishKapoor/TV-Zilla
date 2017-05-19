@@ -56,8 +56,9 @@ class SOMoviesTVC: UITableViewController {
         self.clearsSelectionOnViewWillAppear = false
         self.tableView.backgroundColor = kTableViewBackgroundColor
         // dynamic row height
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 120
+        //self.tableView.rowHeight = UITableViewAutomaticDimension
+        //self.tableView.estimatedRowHeight = 120
+        
         // to remove the unwanted cells from footer.
         self.tableView.tableFooterView = UIView()
     }
@@ -164,7 +165,7 @@ class SOMoviesTVC: UITableViewController {
             }
             break
         case .filtered:
-            DiscoverMovieMDB.discoverMovies(apikey: apikey, language: kEnglishLanguage, page: self.pageNumber,
+            DiscoverMovieMDB.discoverMovies(apikey: apikey, language: kEnglishLanguage, page: Double(self.pageNumber),
                                             primary_release_date_gte: self.fromReleaseYear,
                                             primary_release_date_lte: self.tillReleaseYear) { [weak self]
                 data, filteredMovies  in
@@ -190,6 +191,7 @@ class SOMoviesTVC: UITableViewController {
             )
         }
         self.reloadTable()
+    
     }
 
     func reloadTable() {
