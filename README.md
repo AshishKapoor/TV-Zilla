@@ -1,5 +1,6 @@
 # swiftobjc
 An app that utilizes TMDb API for displaying list of movies with details having a filter for minimum and maximum years.
+Also displays list of TV Shows.
 
 Movies List View🕶             |  Filter with Release Date🌻
 :-------------------------:|:-------------------------:
