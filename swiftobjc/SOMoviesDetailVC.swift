@@ -12,11 +12,11 @@ class SOMoviesDetailVC: UIViewController {
     
     // Outlets and properties
     @IBOutlet var backgroundImageView: UIImageView!
-    var moviePosterURL: String      = String()
-    var movieReleaseDate: String    = String()
-    var movieTitle: String          = String()
-    var movieOverview: String       = String()
-    var movieID: Int                = Int()
+    var itemPosterURL: String      = String()
+    var itemReleaseDate: String    = String()
+    var itemTitle: String          = String()
+    var itemOverview: String       = String()
+    var itemID: Int                = Int()
     
     @IBOutlet weak var movieIDLabel: UILabel!
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -28,18 +28,17 @@ class SOMoviesDetailVC: UIViewController {
         super.viewDidLoad()
         // This function loads all the received values from the abstract list view.
         loadReceivedValues()
-        title = movieTitle
+        title = itemTitle
     }
-    
+
     func loadReceivedValues() {
-        movieIDLabel.text           = String(movieID)
-        movieTitleLabel.text        = movieTitle
-        movieOverviewLabel.text     = movieOverview
-        movieReleaseYearLabel.text  = movieReleaseDate
-        backgroundImage.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL))
-        backgroundImageView.kf.setImage(with: getTMDBUrl(posterPath: moviePosterURL),
+        movieIDLabel.text           = String(itemID)
+        movieTitleLabel.text        = itemTitle
+        movieOverviewLabel.text     = itemOverview
+        movieReleaseYearLabel.text  = itemReleaseDate
+        backgroundImage.kf.setImage(with: getTMDBUrl(posterPath: itemPosterURL))
+        backgroundImageView.kf.setImage(with: getTMDBUrl(posterPath: itemPosterURL),
                                         placeholder: kDefaultMovieImage, options: nil,
                                         progressBlock: nil, completionHandler: nil)
     }
-
 }

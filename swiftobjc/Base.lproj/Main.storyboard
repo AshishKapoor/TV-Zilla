@@ -39,11 +39,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWs-gD-ert" userLabel="maskview">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-GT-gCF">
-                                        <rect key="frame" x="30" y="75" width="315" height="464.5"/>
+                                        <rect key="frame" x="30" y="75" width="315" height="463.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie-poster-not-found" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="275"/>
@@ -92,7 +92,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="9Mw-80-fNg">
-                                                <rect key="frame" x="0.0" y="406" width="315" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="406" width="315" height="19.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPR-cm-eGM">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="18"/>
@@ -104,8 +104,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OverView" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cL3-ag-Zd1">
-                                                        <rect key="frame" x="130" y="0.0" width="185" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="130" y="0.0" width="185" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -115,7 +115,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kH1-9m-Nze">
-                                                <rect key="frame" x="0.0" y="446.5" width="315" height="18"/>
+                                                <rect key="frame" x="0.0" y="445.5" width="315" height="18"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year of Release:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qa-fC-YvS">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="18"/>
@@ -271,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb9-cm-Bxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2439" y="-194"/>
+            <point key="canvasLocation" x="2487" y="-197"/>
         </scene>
         <!--ShowsTVC-->
         <scene sceneID="zhe-Nj-gnL">
@@ -281,9 +281,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for tv shows..." id="SOA-iT-2vi">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="barTintColor" red="0.14507749680000001" green="0.14510986209999999" blue="0.14507544040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SOTVShowTVCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SOTVShowTVCell" rowHeight="125" id="Rc4-XG-XXY" customClass="SOTVShowTVCell" customModule="swiftobjc" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rc4-XG-XXY" id="oW5-af-egQ">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="124.5"/>
@@ -368,6 +375,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tvshowsSearchBar" destination="SOA-iT-2vi" id="3MW-Gf-wZk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxE-9q-Jsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -376,10 +386,9 @@
         <!--TV Shows-->
         <scene sceneID="L9Y-Gm-3KB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hI2-3S-KyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Cbf-xq-8QC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="TV Shows" image="sofa" id="30L-Bb-J9W"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WfK-CV-XfA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WfK-CV-XfA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -392,6 +401,7 @@
                         <segue destination="26I-T8-vZk" kind="relationship" relationship="rootViewController" id="fZa-OZ-Dds"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hI2-3S-KyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="118" y="116"/>
         </scene>
@@ -418,7 +428,6 @@
         <!--Movies-->
         <scene sceneID="IVO-78-3iH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2ns-Rm-zvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="SOMainNC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ruJ-sq-prE" customClass="SOMainNC" customModule="swiftobjc" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Movies" image="ticket" id="Qk2-5v-LsT"/>
                     <toolbarItems/>
@@ -436,8 +445,9 @@
                         <segue destination="cuy-St-Uts" kind="relationship" relationship="rootViewController" id="XW3-U5-gqx"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ns-Rm-zvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="-646.32683658170924"/>
+            <point key="canvasLocation" x="118" y="-551"/>
         </scene>
         <!--Movies-->
         <scene sceneID="2Yh-kQ-yYv">
@@ -448,9 +458,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for movies..." id="LBy-Hr-Ud8">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="barTintColor" red="0.14507749676704407" green="0.1451098620891571" blue="0.14507544040679932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="soMoviesTVCID" id="HC2-bI-eec" customClass="SOMoviesTVCell" customModule="swiftobjc" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HC2-bI-eec" id="nmb-zp-j2K">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="124.5"/>
@@ -541,22 +558,21 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9eQ-QU-ivj">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </refreshControl>
+                    <connections>
+                        <outlet property="moviesSearchBar" destination="LBy-Hr-Ud8" id="Tz0-X5-p3h"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6y9-xJ-wy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893.60000000000002" y="-646.32683658170924"/>
+            <point key="canvasLocation" x="894" y="-551"/>
         </scene>
     </scenes>
     <resources>
         <image name="check" width="512" height="512"/>
         <image name="filter-bar-view-icon" width="20" height="20"/>
-        <image name="filter-view-background" width="768" height="511"/>
+        <image name="filter-view-background" width="384" height="255"/>
         <image name="list-bar-view-icon" width="20" height="20"/>
-        <image name="movie-poster-not-found" width="200" height="300"/>
+        <image name="movie-poster-not-found" width="100" height="150"/>
         <image name="sofa" width="30" height="30"/>
         <image name="ticket" width="30" height="30"/>
     </resources>

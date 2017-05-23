@@ -11,8 +11,10 @@ import TMDBSwift
 import Kingfisher
 import PeekPop
 
-class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
+class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBarDelegate {
     
+    @IBOutlet weak var moviesSearchBar: UISearchBar!
+
     var movies: [Movies]                = []
     var status: LoadingStatus?          = nil
     var pageNumber                      = Int()
@@ -22,14 +24,22 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
     var currentMovieType                = typeOfMovies.nowPlaying
     var isFromFilteredMovies            = false
     var peekPop: PeekPop?
+    var loading: DPBasicLoading?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pageNumber = kInitialValue
-        setupRefreshControl()
+//        self.refreshControl?.beginRefreshing()
+//        setupRefreshControl()
         setupTableView()
+        setupSearchBar()
+        loading?.startLoading(text: "Loading...")
+
         setType(type: currentMovieType)
-        
+        loading = DPBasicLoading(table: tableView)
+
+        moviesSearchBar.delegate = self
+
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
     }
@@ -42,15 +52,62 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
         }
     }
     
+    func setupSearchBar() {
+        view.endEditing(true)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        moviesSearchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        moviesSearchBar.showsCancelButton = false
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchBar.text = ""
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        loading?.startLoading(text: "Loading...")
+        SearchMDB.movie(apikey, query: searchBar.text!, language: kEnglishLanguage, page: self.pageNumber, includeAdult: true, year: nil, primaryReleaseYear: nil){
+            data, movies in
+            guard let moviesSearched = movies else {
+                self.showPopupWithTitle(title: "Not found!", message: "Try other names...", interval: 1)
+                return
+            }
+            
+            self.totalPages = (data.pageResults?.total_pages)!
+            self.title      = "Movies"
+            self.clearOldList()
+            self.getMovies(movieData: moviesSearched)
+        }
+        view.endEditing(true)
+        searchBar.text = ""
+    }
+    
+    func showPopupWithTitle(title: String, message: String, interval: TimeInterval) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        present(alertController, animated: true, completion: nil)
+        self.perform(#selector(dismissAlertViewController), with: alertController, afterDelay: interval)
+    }
+    
+    func dismissAlertViewController(alertController: UIAlertController) {
+        alertController.dismiss(animated: true, completion: nil)
+    }
+    
     func previewingContext(_ previewingContext: PreviewingContext, viewControllerForLocation location: CGPoint) -> UIViewController? {
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC {
             if let indexPath = tableView.indexPathForRow(at: location) {
-                previewViewController.moviePosterURL        = self.movies[indexPath.row].posterPath
-                previewViewController.movieID               = self.movies[indexPath.row].id
-                previewViewController.movieOverview         = self.movies[indexPath.row].overview
-                previewViewController.movieTitle            = self.movies[indexPath.row].title
-                previewViewController.movieReleaseDate      = self.movies[indexPath.row].releaseDate
+                previewViewController.itemPosterURL        = self.movies[indexPath.row].posterPath
+                previewViewController.itemID               = self.movies[indexPath.row].id
+                previewViewController.itemOverview         = self.movies[indexPath.row].overview
+                previewViewController.itemTitle            = self.movies[indexPath.row].title
+                previewViewController.itemReleaseDate      = self.movies[indexPath.row].releaseDate
                 
                 return previewViewController
             }
@@ -66,13 +123,13 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
         // Refresh control
         self.refreshControl?.addTarget(self, action: #selector(refreshMoviesList), for: UIControlEvents.valueChanged)
         self.refreshControl?.tintColor = UIColor.black
+
     }
     
     
     func refreshMoviesList() {
-        self.refreshControl?.beginRefreshing()
-        self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
+        setType(type: currentMovieType)
+        refreshControl?.endRefreshing()
     }
     
     func setupTableView() {
@@ -95,6 +152,10 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
         if self.movies.count > 0 {
             self.movies.removeAll()
         }
+    }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
     }
     
     func showAlertSheet () -> Void {
@@ -145,7 +206,6 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
     }
     
     func setType(type: typeOfMovies) {
-        
         switch type {
         case .topRated:
             MovieMDB.toprated(apikey, language: kEnglishLanguage, page: self.pageNumber) { [weak self]
@@ -215,12 +275,17 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
             )
         }
         self.reloadTable()
-    
     }
 
     func reloadTable() {
-        self.tableView.reloadData()
-        self.status = LoadingStatus.StatusLoaded
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                self.loading?.endLoading()
+                self.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
+                self.status = LoadingStatus.StatusLoaded
+            }
+        }
     }
     
     @IBAction func filterButtonPressed(_ sender: Any) {
@@ -229,7 +294,6 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate {
     }
  
 }
-
 
 extension SOMoviesTVC {
     
@@ -269,13 +333,14 @@ extension SOMoviesTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.cellForRow(at: indexPath) as? SOMoviesTVCell) != nil {
             let soMoviesDetailVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC
-            soMoviesDetailVC?.moviePosterURL        = self.movies[indexPath.row].posterPath
-            soMoviesDetailVC?.movieID               = self.movies[indexPath.row].id
-            soMoviesDetailVC?.movieOverview         = self.movies[indexPath.row].overview
-            soMoviesDetailVC?.movieTitle            = self.movies[indexPath.row].title
-            soMoviesDetailVC?.movieReleaseDate      = self.movies[indexPath.row].releaseDate
+            soMoviesDetailVC?.itemPosterURL        = self.movies[indexPath.row].posterPath
+            soMoviesDetailVC?.itemID               = self.movies[indexPath.row].id
+            soMoviesDetailVC?.itemOverview         = self.movies[indexPath.row].overview
+            soMoviesDetailVC?.itemTitle            = self.movies[indexPath.row].title
+            soMoviesDetailVC?.itemReleaseDate      = self.movies[indexPath.row].releaseDate
             self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
         }
+        view.endEditing(true)
     }
     
     // Added infinite scroll

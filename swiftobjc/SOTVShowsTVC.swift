@@ -10,8 +10,9 @@ import UIKit
 import TMDBSwift
 import PeekPop
 
-class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
+class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBarDelegate {
         
+    @IBOutlet weak var tvshowsSearchBar: UISearchBar!
     var tvShows: [TVShows]              = []
     var status: LoadingStatus?          = nil
     var pageNumber                      = Int()
@@ -29,6 +30,7 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
         setupRefreshControl()
         setupTableView()
         setType(type: currentTVShowsType)
+        tvshowsSearchBar.delegate = self
         
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
@@ -46,16 +48,58 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC {
             if let indexPath = tableView.indexPathForRow(at: location) {
-                previewViewController.moviePosterURL        = self.tvShows[indexPath.row].posterPath
-                previewViewController.movieID               = self.tvShows[indexPath.row].id
-                previewViewController.movieOverview         = self.tvShows[indexPath.row].overview
-                previewViewController.movieTitle            = self.tvShows[indexPath.row].title
-                previewViewController.movieReleaseDate      = self.tvShows[indexPath.row].releaseDate
+                previewViewController.itemPosterURL        = self.tvShows[indexPath.row].posterPath
+                previewViewController.itemID               = self.tvShows[indexPath.row].id
+                previewViewController.itemOverview         = self.tvShows[indexPath.row].overview
+                previewViewController.itemTitle            = self.tvShows[indexPath.row].title
+                previewViewController.itemReleaseDate      = self.tvShows[indexPath.row].releaseDate
                 
                 return previewViewController
             }
         }
         return nil
+    }
+    
+    func setupSearchBar() {
+        view.endEditing(true)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        tvshowsSearchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        tvshowsSearchBar.showsCancelButton = false
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchBar.text = ""
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        tableView.allowsSelection = true
+//        tableView.isScrollEnabled = true
+        SearchMDB.tv(apikey, query: searchBar.text!, page: self.pageNumber, language: kEnglishLanguage, first_air_date_year: nil){
+            data, tvShows in
+            guard let tvShowSearched = tvShows else {
+                self.showPopupWithTitle(title: "Not found!", message: "Try other names...", interval: 1)
+                return
+            }
+            
+            self.totalPages = (data.pageResults?.total_pages)!
+            self.title      = "TV Shows"
+            self.clearOldList()
+            self.getTVShows(tvShowData: tvShowSearched)
+        }
+        view.endEditing(true)
+        searchBar.text = ""
+    }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
     }
 
     func previewingContext(_ previewingContext: PreviewingContext, commitViewController viewControllerToCommit: UIViewController) {
@@ -64,12 +108,21 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
 
     func setupRefreshControl() {
         // Refresh control
-        self.refreshControl?.addTarget(self, action: #selector(refreshMoviesList), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refreshTVShowsList), for: UIControlEvents.valueChanged)
         self.refreshControl?.tintColor = UIColor.black
     }
     
+    func showPopupWithTitle(title: String, message: String, interval: TimeInterval) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        present(alertController, animated: true, completion: nil)
+        self.perform(#selector(dismissAlertViewController), with: alertController, afterDelay: interval)
+    }
     
-    func refreshMoviesList() {
+    func dismissAlertViewController(alertController: UIAlertController) {
+        alertController.dismiss(animated: true, completion: nil)
+    }
+    
+    func refreshTVShowsList() {
         self.refreshControl?.beginRefreshing()
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
@@ -79,10 +132,10 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
         // to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
         self.tableView.backgroundColor = kTableViewBackgroundColor
-        // dynamic row height
         
-        //self.tableView.rowHeight = UITableViewAutomaticDimension
-        //self.tableView.estimatedRowHeight = 120
+        // dynamic row height
+//      self.tableView.rowHeight = UITableViewAutomaticDimension
+//      self.tableView.estimatedRowHeight = 120
         
         // to remove the unwanted cells from footer.
         self.tableView.tableFooterView = UIView()
@@ -105,31 +158,35 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
             preferredStyle: .actionSheet
         )
         
-        let nowPlayingButton = UIAlertAction(title: kPopularTVShows, style: .default) { action -> Void in
+        let nowPlayingButton = UIAlertAction(title: kPopularTVShows, style: .default) {
+            action -> Void in
             self.setType(type: .popular)
             self.currentTVShowsType = .popular
             self.clearOldList()
-            self.refreshMoviesList()
+            self.refreshTVShowsList()
         }
         actionSheetController.addAction(nowPlayingButton)
         
-        let upcomingButton = UIAlertAction(title: kTopRatedTVShows, style: .default) { action -> Void in
+        let upcomingButton = UIAlertAction(title: kTopRatedTVShows, style: .default) {
+            action -> Void in
             self.setType(type: .toprated)
             self.currentTVShowsType = .toprated
             self.clearOldList()
-            self.refreshMoviesList()
+            self.refreshTVShowsList()
         }
         actionSheetController.addAction(upcomingButton)
         
-        let popularButton = UIAlertAction(title: kOnTheAirTVShows, style: .default) { action -> Void in
+        let popularButton = UIAlertAction(title: kOnTheAirTVShows, style: .default) {
+            action -> Void in
             self.setType(type: .ontheair)
             self.currentTVShowsType = .ontheair
             self.clearOldList()
-            self.refreshMoviesList()
+            self.refreshTVShowsList()
         }
         actionSheetController.addAction(popularButton)
         
-        let cancleActionButton = UIAlertAction(title: kCancel, style: .cancel) { action -> Void in
+        let cancleActionButton = UIAlertAction(title: kCancel, style: .cancel) {
+            action -> Void in
             //Do nothing.
         }
         actionSheetController.addAction(cancleActionButton)
@@ -141,9 +198,10 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
         
         switch type {
         case .popular:
-            TVMDB.popular(apikey, page: self.pageNumber, language: kEnglishLanguage){ [weak self]
-                data, popularTVShows in
+            TVMDB.popular(apikey, page: self.pageNumber, language: kEnglishLanguage){
+                [weak self] data, popularTVShows in
                 guard let tvShow = popularTVShows else { return }
+                
                 self?.totalPages = (data.pageResults?.total_pages)!
                 self?.title     = kPopularTVShows
                 self?.getTVShows(tvShowData: tvShow)
@@ -174,6 +232,9 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate {
     
     func getTVShows(tvShowData: [TVMDB] ) {
         for tvShow in tvShowData {
+            
+            print(tvShow.name)
+            
             self.tvShows.append(TVShows(
                 id: tvShow.id,
                 posterPath: tvShow.poster_path,
@@ -211,6 +272,7 @@ extension SOTVShowsTVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         // Configure the cell...
         let cellIdentifier = "SOTVShowTVCell"
         guard let cell = tableView.dequeueReusableCell (
@@ -237,13 +299,14 @@ extension SOTVShowsTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.cellForRow(at: indexPath) as? SOTVShowTVCell) != nil {
             let soMoviesDetailVC = soStoryBoard.instantiateViewController(withIdentifier: "SOMoviesDetailVC") as? SOMoviesDetailVC
-            soMoviesDetailVC?.moviePosterURL        = self.tvShows[indexPath.row].posterPath
-            soMoviesDetailVC?.movieID               = self.tvShows[indexPath.row].id
-            soMoviesDetailVC?.movieOverview         = self.tvShows[indexPath.row].overview
-            soMoviesDetailVC?.movieTitle            = self.tvShows[indexPath.row].title
-            soMoviesDetailVC?.movieReleaseDate      = self.tvShows[indexPath.row].releaseDate
+            soMoviesDetailVC?.itemPosterURL        = self.tvShows[indexPath.row].posterPath
+            soMoviesDetailVC?.itemID               = self.tvShows[indexPath.row].id
+            soMoviesDetailVC?.itemOverview         = self.tvShows[indexPath.row].overview
+            soMoviesDetailVC?.itemTitle            = self.tvShows[indexPath.row].title
+            soMoviesDetailVC?.itemReleaseDate      = self.tvShows[indexPath.row].releaseDate
             self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
         }
+        view.endEditing(true)
     }
     
     // Added infinite scroll

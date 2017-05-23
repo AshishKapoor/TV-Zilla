@@ -46,8 +46,6 @@ open class SCPopDatePicker: UIView, UIGestureRecognizerDelegate {
         
     }
     
-    
-    
     open func show(attachToView view: UIView) {
         self.show(self, inView: view)
     }
@@ -77,23 +75,24 @@ open class SCPopDatePicker: UIView, UIGestureRecognizerDelegate {
         
         //Round .Left / .Right Corners of DatePicker View
         if showCornerRadius {
-            let path = UIBezierPath(roundedRect:self.datePickerView.bounds, byRoundingCorners:[.topRight, .topLeft], cornerRadii: CGSize(width: 10, height: 10))
+            let path = UIBezierPath(
+                roundedRect:self.datePickerView.bounds,
+                byRoundingCorners:[.topRight, .topLeft],
+                cornerRadii: CGSize(width: 10, height: 10))
             let maskLayer = CAShapeLayer()
-            
             maskLayer.path = path.cgPath
             self.datePickerView.layer.mask = maskLayer
         }
         
         self.backgroundView.addSubview(self.addSelectButton())
         
-        
         //Show UI Views
         UIView.animate(withDuration: 0.15, animations: {
             self.containerView.alpha = 1
-        }, completion: { (success:Bool) in
+        }, completion: { ( success:Bool ) in
             UIView.animate(withDuration: 0.30, delay: 0, options: .transitionCrossDissolve, animations: {
                 self.backgroundView.frame.origin.y = self.containerView.bounds.height / 2 - 125
-            }, completion: { (success:Bool) in
+            }, completion: { ( success: Bool ) in
                 
             })
         })

@@ -23,6 +23,7 @@
 		E3ACED5E1ECF280E00F2EAFE /* TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */; };
 		E3ACED601ECF288700F2EAFE /* SOTVShowsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */; };
 		E3ACED621ECF35CA00F2EAFE /* SOTVShowTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */; };
+		E3F351451ED4B795004BC3EC /* DPBasicLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F351441ED4B795004BC3EC /* DPBasicLoading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShows.swift; sourceTree = "<group>"; };
 		E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOTVShowsTVC.swift; sourceTree = "<group>"; };
 		E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOTVShowTVCell.swift; sourceTree = "<group>"; };
+		E3F351441ED4B795004BC3EC /* DPBasicLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPBasicLoading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				2D4B89021E4A082700E25CE3 /* SOConstants.swift */,
 				2D1BD91E1E4AF4E300CFA756 /* SCPopDatePicker.swift */,
+				E3F351441ED4B795004BC3EC /* DPBasicLoading.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				2D1BD9231E4B003100CFA756 /* SOMainNC.swift in Sources */,
 				2D4B88F11E4A07EA00E25CE3 /* AppDelegate.swift in Sources */,
 				2D4B890B1E4A0BFF00E25CE3 /* SOMoviesDetailVC.swift in Sources */,
+				E3F351451ED4B795004BC3EC /* DPBasicLoading.swift in Sources */,
 				E3ACED5E1ECF280E00F2EAFE /* TVShows.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
