@@ -38,12 +38,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iF7-gm-ftc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWs-gD-ert" userLabel="maskview">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
+                                    <view alpha="0.10000000000000001" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWs-gD-ert" userLabel="maskview">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-GT-gCF">
-                                        <rect key="frame" x="30" y="75" width="315" height="463.5"/>
+                                        <rect key="frame" x="30" y="75" width="315" height="501.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie-poster-not-found" translatesAutoresizingMaskIntoConstraints="NO" id="UgX-MN-MJe">
                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="275"/>
@@ -134,6 +134,26 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3o-gp-1m9">
+                                                <rect key="frame" x="0.0" y="483.5" width="315" height="18"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6O-hc-zLD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="130" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="130" id="fZA-70-FEG"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfR-4t-xyK">
+                                                        <rect key="frame" x="130" y="0.0" width="185" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="UgX-MN-MJe" firstAttribute="top" secondItem="Ngo-GT-gCF" secondAttribute="top" id="CXv-fM-HE3"/>
@@ -175,11 +195,12 @@
                         <outlet property="movieOverviewLabel" destination="cL3-ag-Zd1" id="Rta-DJ-qVl"/>
                         <outlet property="movieReleaseYearLabel" destination="aL1-EI-fKD" id="z4f-VL-w2B"/>
                         <outlet property="movieTitleLabel" destination="Exr-gd-qwO" id="4Zh-52-ISc"/>
+                        <outlet property="ratingLabel" destination="MfR-4t-xyK" id="JiL-TG-hCv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBR-LZ-1B2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718" y="-196"/>
+            <point key="canvasLocation" x="1717.5999999999999" y="-196.55172413793105"/>
         </scene>
         <!--Filter-->
         <scene sceneID="QyQ-Fw-Fnw">

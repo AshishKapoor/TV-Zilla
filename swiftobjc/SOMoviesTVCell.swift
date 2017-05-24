@@ -15,7 +15,7 @@ class SOMoviesTVCell: UITableViewCell {
     @IBOutlet weak var movieNameLabel:      UILabel!
     @IBOutlet weak var moviePlotLabel:      UILabel!
     @IBOutlet weak var movieYearLabel:      UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,7 +23,6 @@ class SOMoviesTVCell: UITableViewCell {
         self.movieYearLabel?.text           = kLoadingStateText
         self.moviePlotLabel?.text           = kLoadingStateText
         self.moviesImageView?.image         = kDefaultMovieImage
-        
         roundedCornersForStudentPhoto()
     }
 

@@ -20,6 +20,17 @@
 		2D4B89111E4A0D6C00E25CE3 /* SOMoviesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B89101E4A0D6C00E25CE3 /* SOMoviesTVC.swift */; };
 		2D4B89131E4A0D8100E25CE3 /* SOMoviesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4B89121E4A0D8100E25CE3 /* SOMoviesTVCell.swift */; };
 		537E9F63E978BBC43F2C4E42 /* Pods_swiftobjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E96A6BB9344C117E112548C /* Pods_swiftobjc.framework */; };
+		E363A2451ED55FDC007EFA31 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E363A2431ED55FDC007EFA31 /* StartApp.bundle */; };
+		E363A2461ED55FDC007EFA31 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2441ED55FDC007EFA31 /* StartApp.framework */; };
+		E363A2491ED5618F007EFA31 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2481ED5618F007EFA31 /* AdSupport.framework */; };
+		E363A24B1ED56199007EFA31 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A24A1ED56199007EFA31 /* CoreTelephony.framework */; };
+		E363A24D1ED561A0007EFA31 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A24C1ED561A0007EFA31 /* SystemConfiguration.framework */; };
+		E363A24F1ED561A7007EFA31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A24E1ED561A7007EFA31 /* CoreGraphics.framework */; };
+		E363A2511ED561AD007EFA31 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2501ED561AD007EFA31 /* StoreKit.framework */; };
+		E363A2531ED561B9007EFA31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2521ED561B9007EFA31 /* QuartzCore.framework */; };
+		E363A2551ED561C0007EFA31 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2541ED561C0007EFA31 /* CoreMedia.framework */; };
+		E363A2571ED561C5007EFA31 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2561ED561C5007EFA31 /* AVFoundation.framework */; };
+		E363A2591ED561DF007EFA31 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E363A2581ED561DF007EFA31 /* libz.tbd */; };
 		E3ACED5E1ECF280E00F2EAFE /* TVShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */; };
 		E3ACED601ECF288700F2EAFE /* SOTVShowsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */; };
 		E3ACED621ECF35CA00F2EAFE /* SOTVShowTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */; };
@@ -44,6 +55,18 @@
 		2D4B89101E4A0D6C00E25CE3 /* SOMoviesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMoviesTVC.swift; sourceTree = "<group>"; };
 		2D4B89121E4A0D8100E25CE3 /* SOMoviesTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOMoviesTVCell.swift; sourceTree = "<group>"; };
 		62E5BA915AC22ED77E0FB39A /* Pods-swiftobjc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftobjc.release.xcconfig"; path = "Pods/Target Support Files/Pods-swiftobjc/Pods-swiftobjc.release.xcconfig"; sourceTree = "<group>"; };
+		E363A2431ED55FDC007EFA31 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
+		E363A2441ED55FDC007EFA31 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
+		E363A2471ED56078007EFA31 /* swiftobjc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "swiftobjc-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		E363A2481ED5618F007EFA31 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E363A24A1ED56199007EFA31 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E363A24C1ED561A0007EFA31 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E363A24E1ED561A7007EFA31 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E363A2501ED561AD007EFA31 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E363A2521ED561B9007EFA31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E363A2541ED561C0007EFA31 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		E363A2561ED561C5007EFA31 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E363A2581ED561DF007EFA31 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E3ACED5D1ECF280E00F2EAFE /* TVShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVShows.swift; sourceTree = "<group>"; };
 		E3ACED5F1ECF288700F2EAFE /* SOTVShowsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOTVShowsTVC.swift; sourceTree = "<group>"; };
 		E3ACED611ECF35CA00F2EAFE /* SOTVShowTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOTVShowTVCell.swift; sourceTree = "<group>"; };
@@ -55,7 +78,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E363A2591ED561DF007EFA31 /* libz.tbd in Frameworks */,
+				E363A2571ED561C5007EFA31 /* AVFoundation.framework in Frameworks */,
+				E363A2551ED561C0007EFA31 /* CoreMedia.framework in Frameworks */,
+				E363A2531ED561B9007EFA31 /* QuartzCore.framework in Frameworks */,
+				E363A2511ED561AD007EFA31 /* StoreKit.framework in Frameworks */,
+				E363A24F1ED561A7007EFA31 /* CoreGraphics.framework in Frameworks */,
+				E363A24D1ED561A0007EFA31 /* SystemConfiguration.framework in Frameworks */,
+				E363A24B1ED56199007EFA31 /* CoreTelephony.framework in Frameworks */,
+				E363A2491ED5618F007EFA31 /* AdSupport.framework in Frameworks */,
 				537E9F63E978BBC43F2C4E42 /* Pods_swiftobjc.framework in Frameworks */,
+				E363A2461ED55FDC007EFA31 /* StartApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +98,15 @@
 		07C0D82FB765DA1E48F80995 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E363A2581ED561DF007EFA31 /* libz.tbd */,
+				E363A2561ED561C5007EFA31 /* AVFoundation.framework */,
+				E363A2541ED561C0007EFA31 /* CoreMedia.framework */,
+				E363A2521ED561B9007EFA31 /* QuartzCore.framework */,
+				E363A2501ED561AD007EFA31 /* StoreKit.framework */,
+				E363A24E1ED561A7007EFA31 /* CoreGraphics.framework */,
+				E363A24C1ED561A0007EFA31 /* SystemConfiguration.framework */,
+				E363A24A1ED56199007EFA31 /* CoreTelephony.framework */,
+				E363A2481ED5618F007EFA31 /* AdSupport.framework */,
 				1E96A6BB9344C117E112548C /* Pods_swiftobjc.framework */,
 			);
 			name = Frameworks;
@@ -101,6 +143,8 @@
 		2D4B88EF1E4A07EA00E25CE3 /* swiftobjc */ = {
 			isa = PBXGroup;
 			children = (
+				E363A2471ED56078007EFA31 /* swiftobjc-Bridging-Header.h */,
+				E363A2421ED55FC5007EFA31 /* StartApp SDK */,
 				2D4B88FC1E4A07EA00E25CE3 /* Info.plist */,
 				2D4B88F91E4A07EA00E25CE3 /* LaunchScreen.storyboard */,
 				2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */,
@@ -157,6 +201,15 @@
 				62E5BA915AC22ED77E0FB39A /* Pods-swiftobjc.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E363A2421ED55FC5007EFA31 /* StartApp SDK */ = {
+			isa = PBXGroup;
+			children = (
+				E363A2431ED55FDC007EFA31 /* StartApp.bundle */,
+				E363A2441ED55FDC007EFA31 /* StartApp.framework */,
+			);
+			name = "StartApp SDK";
 			sourceTree = "<group>";
 		};
 		E3A928A21ECEA65200F625A4 /* Tv */ = {
@@ -258,6 +311,7 @@
 			files = (
 				2D4B88FB1E4A07EA00E25CE3 /* LaunchScreen.storyboard in Resources */,
 				2D4B88F81E4A07EA00E25CE3 /* Assets.xcassets in Resources */,
+				E363A2451ED55FDC007EFA31 /* StartApp.bundle in Resources */,
 				2D4B88F61E4A07EA00E25CE3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,11 +510,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8NCFKTPQVR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swiftobjc",
+				);
 				INFOPLIST_FILE = swiftobjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.kapoor.simplymovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navitas_kapoora/Developer/swiftobjc/swiftobjc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -474,11 +533,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8NCFKTPQVR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swiftobjc",
+				);
 				INFOPLIST_FILE = swiftobjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.kapoor.simplymovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navitas_kapoora/Developer/swiftobjc/swiftobjc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

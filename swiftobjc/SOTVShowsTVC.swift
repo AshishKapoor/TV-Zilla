@@ -77,6 +77,8 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBa
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchBar.text = ""
+        clearOldList()
+        setType(type: currentTVShowsType)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -95,7 +97,7 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBa
             self.getTVShows(tvShowData: tvShowSearched)
         }
         view.endEditing(true)
-        searchBar.text = ""
+//        searchBar.text = ""
     }
     
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -240,7 +242,8 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBa
                 posterPath: tvShow.poster_path,
                 title: tvShow.name ?? "",
                 overview: tvShow.overview,
-                release_date: tvShow.first_air_date
+                release_date: tvShow.first_air_date,
+                popularity: tvShow.popularity
                 )
             )
         }
@@ -285,12 +288,12 @@ extension SOTVShowsTVC {
             cell.tvShowDescription?.text            = kLoadingStateText
             cell.posterImageView?.image             = kDefaultMovieImage
         } else if self.status == LoadingStatus.StatusLoaded {
-            cell.tvShowTitle?.text               = self.tvShows[indexPath.row].title
-            cell.tvShowAirDate?.text               = self.tvShows[indexPath.row].releaseDate
+            cell.tvShowTitle?.text                  = self.tvShows[indexPath.row].title
+            cell.tvShowAirDate?.text                = self.tvShows[indexPath.row].releaseDate
             cell.posterImageView.kf.setImage(with: self.tvShows[indexPath.row].getPosterURL(),
                                              placeholder: UIImage(named: "movie-poster-not-found"),
                                              options: nil, progressBlock: nil, completionHandler: nil)
-            cell.tvShowDescription.text                = self.tvShows[indexPath.row].overview
+            cell.tvShowDescription.text             = self.tvShows[indexPath.row].overview
         }
         
         return cell
@@ -304,6 +307,7 @@ extension SOTVShowsTVC {
             soMoviesDetailVC?.itemOverview         = self.tvShows[indexPath.row].overview
             soMoviesDetailVC?.itemTitle            = self.tvShows[indexPath.row].title
             soMoviesDetailVC?.itemReleaseDate      = self.tvShows[indexPath.row].releaseDate
+            soMoviesDetailVC?.itemPopularity       = self.tvShows[indexPath.row].popularity
             self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
         }
         view.endEditing(true)

@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        let sdk: STAStartAppSDK = STAStartAppSDK.sharedInstance()
+        sdk.appID = "204186550"
+        
+        sdk.showSplashAd()
         return true
     }
 

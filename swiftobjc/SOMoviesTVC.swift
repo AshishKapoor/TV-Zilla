@@ -25,12 +25,11 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
     var isFromFilteredMovies            = false
     var peekPop: PeekPop?
     var loading: DPBasicLoading?
-    
+    var startAppBanner: STABannerView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         pageNumber = kInitialValue
-//        self.refreshControl?.beginRefreshing()
-//        setupRefreshControl()
         setupTableView()
         setupSearchBar()
         loading?.startLoading(text: "Loading...")
@@ -39,9 +38,14 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
         loading = DPBasicLoading(table: tableView)
 
         moviesSearchBar.delegate = self
-
+        
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
+        // Ads
+        if (startAppBanner == nil) {
+            startAppBanner = STABannerView(size: STA_AutoAdSize, autoOrigin: STAAdOrigin_Bottom, with: self.view, withDelegate: nil);
+            self.tableView.addSubview(startAppBanner!)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +73,8 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchBar.text = ""
+        clearOldList()
+        setType(type: currentMovieType)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -86,7 +92,7 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
             self.getMovies(movieData: moviesSearched)
         }
         view.endEditing(true)
-        searchBar.text = ""
+//        searchBar.text = ""
     }
     
     func showPopupWithTitle(title: String, message: String, interval: TimeInterval) {
@@ -225,7 +231,6 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
                 self?.totalPages = (data.pageResults?.total_pages)!
                 self?.title = kNowPlayingMovies
                 self?.getMovies(movieData: movie)
-                
             }
             break
         case .upcoming:
@@ -270,7 +275,8 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
                     posterPath: movieIterator.poster_path,
                     title: movieIterator.title,
                     overview: movieIterator.overview,
-                    release_date: movieIterator.release_date
+                    release_date: movieIterator.release_date,
+                    popularity: movieIterator.popularity
                 )
             )
         }
@@ -338,6 +344,7 @@ extension SOMoviesTVC {
             soMoviesDetailVC?.itemOverview         = self.movies[indexPath.row].overview
             soMoviesDetailVC?.itemTitle            = self.movies[indexPath.row].title
             soMoviesDetailVC?.itemReleaseDate      = self.movies[indexPath.row].releaseDate
+            soMoviesDetailVC?.itemPopularity       = self.movies[indexPath.row].popularity
             self.navigationController?.pushViewController(soMoviesDetailVC!, animated: true)
         }
         view.endEditing(true)
