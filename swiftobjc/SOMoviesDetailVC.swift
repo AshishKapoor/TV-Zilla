@@ -38,7 +38,7 @@ class SOMoviesDetailVC: UIViewController {
     }
 
     func buttonTapped(sender: UIButton) {
-        let textToShare = "Check out! \(itemTitle), About: \(itemOverview)"
+        let textToShare = "Check out! \(itemTitle), About: \(itemOverview)."
         
         if let myWebsite = NSURL(string: "https://image.tmdb.org/t/p/w500\(itemPosterURL)") {
             let objectsToShare = [textToShare, myWebsite] as [Any]

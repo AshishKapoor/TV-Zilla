@@ -38,8 +38,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iF7-gm-ftc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view alpha="0.10000000000000001" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWs-gD-ert" userLabel="maskview">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWs-gD-ert" userLabel="maskview">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="704"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ngo-GT-gCF">
@@ -292,7 +292,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb9-cm-Bxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2487" y="-197"/>
+            <point key="canvasLocation" x="2492" y="-197"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="B5Y-0V-E53">
+            <objects>
+                <viewController id="CeD-Zu-DVh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gfk-o6-sNv"/>
+                        <viewControllerLayoutGuide type="bottom" id="jOQ-i4-TJn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9SK-DM-Asd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D8W-NP-6NZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3209" y="-197"/>
         </scene>
         <!--ShowsTVC-->
         <scene sceneID="zhe-Nj-gnL">
