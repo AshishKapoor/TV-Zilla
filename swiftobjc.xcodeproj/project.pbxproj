@@ -98,6 +98,7 @@
 		07C0D82FB765DA1E48F80995 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E363A2421ED55FC5007EFA31 /* StartApp SDK */,
 				E363A2581ED561DF007EFA31 /* libz.tbd */,
 				E363A2561ED561C5007EFA31 /* AVFoundation.framework */,
 				E363A2541ED561C0007EFA31 /* CoreMedia.framework */,
@@ -144,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				E363A2471ED56078007EFA31 /* swiftobjc-Bridging-Header.h */,
-				E363A2421ED55FC5007EFA31 /* StartApp SDK */,
 				2D4B88FC1E4A07EA00E25CE3 /* Info.plist */,
 				2D4B88F91E4A07EA00E25CE3 /* LaunchScreen.storyboard */,
 				2D4B88F41E4A07EA00E25CE3 /* Main.storyboard */,
@@ -152,6 +152,7 @@
 				2D4B89071E4A084700E25CE3 /* Helpers */,
 				E3A928A21ECEA65200F625A4 /* Tv */,
 				2D1BD9241E4B182F00CFA756 /* Movie */,
+				E36854FE1ED83C8A00FF2F79 /* Detail */,
 				2D4B88F71E4A07EA00E25CE3 /* Assets.xcassets */,
 			);
 			path = swiftobjc;
@@ -177,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				2D4B89101E4A0D6C00E25CE3 /* SOMoviesTVC.swift */,
-				2D4B890A1E4A0BFF00E25CE3 /* SOMoviesDetailVC.swift */,
 				2D1BD9201E4AF7BC00CFA756 /* SOFilterVC.swift */,
 				2D1BD9221E4B003100CFA756 /* SOMainNC.swift */,
 			);
@@ -210,6 +210,15 @@
 				E363A2441ED55FDC007EFA31 /* StartApp.framework */,
 			);
 			name = "StartApp SDK";
+			path = swiftobjc;
+			sourceTree = "<group>";
+		};
+		E36854FE1ED83C8A00FF2F79 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				2D4B890A1E4A0BFF00E25CE3 /* SOMoviesDetailVC.swift */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		E3A928A21ECEA65200F625A4 /* Tv */ = {

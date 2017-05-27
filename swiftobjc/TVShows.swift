@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMDBSwift
 
 class TVShows {
     
@@ -17,15 +18,45 @@ class TVShows {
     private var _overview           = String()
     private var _poster_path        = String()
     private var _popularity         = Double()
-    
-    init(id: Int?, posterPath: String?, title:String?, overview:String?, release_date:String?, popularity: Double?) {
         
-        self._id                    = id                ?? 0
-        self._title                 = title             ?? ""
-        self._release_date          = release_date      ?? ""
-        self._overview              = overview          ?? ""
-        self._poster_path           = posterPath        ?? ""
-        self._popularity            = popularity        ?? 0.0
+    init(tvShowsJSON: TVMDB) {
+        
+        guard let id = tvShowsJSON.id else {
+            self._id = 0
+            return
+        }
+        self._id = id
+        
+        guard let title = tvShowsJSON.name else {
+            self._title = ""
+            return
+        }
+        self._title = title
+        
+        guard let releaseDate = tvShowsJSON.first_air_date else {
+            self._release_date = ""
+            return
+        }
+        self._release_date = releaseDate
+        
+        guard let overview = tvShowsJSON.overview else {
+            self._overview = ""
+            return
+        }
+        self._overview = overview
+        
+        guard let posterPath = tvShowsJSON.poster_path else {
+            self._poster_path = ""
+            return
+        }
+        self._poster_path = posterPath
+        
+        guard let popularity = tvShowsJSON.popularity else {
+            self._popularity = 0.0
+            return
+        }
+        self._popularity = popularity
+        
     }
     
     // Getters

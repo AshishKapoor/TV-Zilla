@@ -270,15 +270,7 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
     
     func getMovies(movieData: [MovieMDB] ) {
         for movieIterator in movieData {
-            self.movies.append(Movies(
-                    id: movieIterator.id,
-                    posterPath: movieIterator.poster_path,
-                    title: movieIterator.title,
-                    overview: movieIterator.overview,
-                    release_date: movieIterator.release_date,
-                    popularity: movieIterator.popularity
-                )
-            )
+            self.movies.append(Movies(moviesJSON: movieIterator))
         }
         self.reloadTable()
     }

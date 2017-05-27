@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let sdk: STAStartAppSDK = STAStartAppSDK.sharedInstance()
         sdk.appID = "204186550"
-        
         sdk.showSplashAd()
         return true
     }

@@ -12,6 +12,10 @@ import UIKit
 // TMDb ApiKey-v3
 let apikey                      = "2de045dee84cbaea635494518315f957"
 
+typealias JSON = AnyObject
+typealias JSONObject = [String : AnyObject]
+typealias JSONArray = [JSON]
+
 // List of movies type
 let kTopRatedMovies             = "Top Rated Movies"
 let kNowPlayingMovies           = "Now Playing"

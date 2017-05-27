@@ -233,19 +233,8 @@ class SOTVShowsTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBa
     }
     
     func getTVShows(tvShowData: [TVMDB] ) {
-        for tvShow in tvShowData {
-            
-            print(tvShow.name)
-            
-            self.tvShows.append(TVShows(
-                id: tvShow.id,
-                posterPath: tvShow.poster_path,
-                title: tvShow.name ?? "",
-                overview: tvShow.overview,
-                release_date: tvShow.first_air_date,
-                popularity: tvShow.popularity
-                )
-            )
+        for tvShow in tvShowData {            
+            self.tvShows.append(TVShows(tvShowsJSON: tvShow))
         }
         self.reloadTable()
     }

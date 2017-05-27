@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TMDBSwift
 
 class Movies {
     
@@ -18,14 +19,44 @@ class Movies {
     private var _poster_path        = String()
     private var _popularity         = Double()
     
-    init(id: Int?, posterPath: String?, title:String?, overview:String?, release_date:String?, popularity: Double?) {
+    init(moviesJSON: MovieMDB) {
         
-        self._id                    = id                ?? 0
-        self._title                 = title             ?? ""
-        self._release_date          = release_date      ?? ""
-        self._overview              = overview          ?? ""
-        self._poster_path           = posterPath        ?? ""
-        self._popularity            = popularity        ?? 0.0
+        guard let id = moviesJSON.id else {
+            self._id = 0
+            return
+        }
+        self._id = id
+        
+        guard let title = moviesJSON.title else {
+            self._title = ""
+            return
+        }
+        self._title = title
+        
+        guard let releaseDate = moviesJSON.release_date else {
+            self._release_date = ""
+            return
+        }
+        self._release_date = releaseDate
+        
+        guard let overview = moviesJSON.overview else {
+            self._overview = ""
+            return
+        }
+        self._overview = overview
+        
+        guard let posterPath = moviesJSON.poster_path else {
+            self._poster_path = ""
+            return
+        }
+        self._poster_path = posterPath
+        
+        guard let popularity = moviesJSON.popularity else {
+            self._popularity = 0.0
+            return
+        }
+        self._popularity = popularity
+        
     }
     
     // Getters
@@ -34,7 +65,7 @@ class Movies {
     var releaseDate: String         { return _release_date }
     var overview: String            { return _overview }
     var posterPath: String          { return _poster_path }
-    var popularity: Double             { return _popularity }
+    var popularity: Double          { return _popularity }
     
     // Helper method for posters
     func getPosterURL() -> URL      { return getTMDBUrl(posterPath: posterPath) }
