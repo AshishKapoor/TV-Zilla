@@ -10,8 +10,9 @@ import UIKit
 import TMDBSwift
 import Kingfisher
 import PeekPop
+import EFInternetIndicator
 
-class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBarDelegate {
+class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBarDelegate, InternetStatusIndicable {
     
     @IBOutlet weak var moviesSearchBar: UISearchBar!
 
@@ -26,9 +27,12 @@ class SOMoviesTVC: UITableViewController, PeekPopPreviewingDelegate, UISearchBar
     var peekPop: PeekPop?
     var loading: DPBasicLoading?
     var startAppBanner: STABannerView?
+    var internetConnectionIndicator:InternetViewIndicator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.startMonitoringInternet()
+
         pageNumber = kInitialValue
         setupTableView()
         setupSearchBar()

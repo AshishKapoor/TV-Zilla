@@ -10,4 +10,5 @@ target 'swiftobjc' do
   pod 'TMDBSwift'
   pod 'Kingfisher', '~> 3.0'
   pod 'PeekPop', '~> 1.0'
+  pod 'EFInternetIndicator'
 end

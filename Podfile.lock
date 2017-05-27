@@ -1,18 +1,31 @@
 PODS:
+  - EFInternetIndicator (0.2.0):
+    - EFInternetIndicator/Interface (= 0.2.0)
+    - EFInternetIndicator/Network (= 0.2.0)
+  - EFInternetIndicator/Interface (0.2.0):
+    - SwiftMessages
+  - EFInternetIndicator/Network (0.2.0):
+    - ReachabilitySwift
   - Kingfisher (3.9.1)
   - PeekPop (1.0.0)
+  - ReachabilitySwift (3)
+  - SwiftMessages (3.3.3)
   - TMDBSwift (0.3.1)
 
 DEPENDENCIES:
+  - EFInternetIndicator
   - Kingfisher (~> 3.0)
   - PeekPop (~> 1.0)
   - TMDBSwift
 
 SPEC CHECKSUMS:
+  EFInternetIndicator: 76219397add7b5f2388869fa4d9305d0c6af51e1
   Kingfisher: 6729a0baaa458245bfb8cd5a1296c71c10d6eb6c
   PeekPop: dcac0f339476b99eb50f8e3bc584f332c744ecf1
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SwiftMessages: 09cea3336e3fb63c3578983c8aac65acaa6d884a
   TMDBSwift: 64cdc44e58c438620f771e71bd4d415f8075ff43
 
-PODFILE CHECKSUM: 0699d55c8404a532de26721e432bd8d2a19c2c42
+PODFILE CHECKSUM: e87029c5c6e3dde14305faaa69b64e5f123d6266
 
 COCOAPODS: 1.1.1
